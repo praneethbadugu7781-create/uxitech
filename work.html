@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="UXI Portfolio — Explore our premium digital design projects and case studies.">
+    <title>Our Work — UXI</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/3d-effects.css">
+</head>
+<body data-page="work">
+    <canvas id="webgl-canvas"></canvas>
+    <div class="cursor-glow" id="cursorGlow"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <div class="page-transition">
+        <div class="transition-logo">UXI</div>
+        <div class="transition-bars">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-text">UXI</span>
+                <span class="logo-dot"></span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="work.html" class="active">Work</a>
+                <a href="about.html">About</a>
+                <a href="contact.html" class="nav-cta">Start a Project</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-bg"></div>
+        <div class="mobile-menu-content">
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="work.html" class="active">Work</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <div class="hero-mesh"></div>
+        </div>
+        <div class="container">
+            <div class="page-hero-content">
+                <span class="page-label" data-reveal>Portfolio</span>
+                <h1 class="page-title" data-reveal>
+                    <span class="title-word">Our</span>
+                    <span class="title-word highlight">Work</span>
+                </h1>
+                <p class="page-subtitle" data-reveal>A curated selection of projects that showcase our commitment to excellence.</p>
+            </div>
+        </div>
+        <div class="hero-gradient-orbs">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+        </div>
+    </section>
+
+    <!-- Portfolio Grid -->
+    <section class="portfolio-section">
+        <div class="container">
+            <!-- Filter -->
+            <div class="portfolio-filter" data-reveal>
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web Design</button>
+                <button class="filter-btn" data-filter="business">Business</button>
+                <button class="filter-btn" data-filter="education">Education</button>
+                <button class="filter-btn" data-filter="entertainment">Entertainment</button>
+            </div>
+
+            <div class="portfolio-grid">
+                <!-- Project 1: WASSHOT -->
+                <article class="portfolio-item" data-category="web" data-reveal>
+                    <a href="https://wasshot.pages.dev/" target="_blank" rel="noopener" class="portfolio-card-link">
+                        <div class="portfolio-card">
+                            <div class="portfolio-visual">
+                                <div class="portfolio-gradient gradient-1"></div>
+                                <div class="portfolio-3d">
+                                    <div class="floating-cube">
+                                        <div class="cube-face front"></div>
+                                        <div class="cube-face back"></div>
+                                        <div class="cube-face top"></div>
+                                        <div class="cube-face bottom"></div>
+                                        <div class="cube-face left"></div>
+                                        <div class="cube-face right"></div>
+                                    </div>
+                                </div>
+                                <div class="portfolio-pattern pattern-1"></div>
+                            </div>
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-info">
+                                    <span class="portfolio-category">Creative Brand • Web Design</span>
+                                    <h3 class="portfolio-title">WASSHOT</h3>
+                                    <p class="portfolio-desc">A bold creative brand website with immersive storytelling and cutting-edge animations.</p>
+                                    <div class="portfolio-meta">
+                                        <span class="meta-item">2025</span>
+                                        <span class="meta-divider">•</span>
+                                        <span class="meta-item">Website</span>
+                                    </div>
+                                    <span class="portfolio-link">View Project</span>
+                                </div>
+                            </div>
+                            <div class="portfolio-glow"></div>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- Project 2: SIVASAIPLYWOODS -->
+                <article class="portfolio-item" data-category="web" data-reveal>
+                    <a href="https://sivasaiplywoods.pages.dev/" target="_blank" rel="noopener" class="portfolio-card-link">
+                        <div class="portfolio-card">
+                            <div class="portfolio-visual">
+                                <div class="portfolio-gradient gradient-2"></div>
+                                <div class="portfolio-3d">
+                                    <div class="floating-sphere-wrap">
+                                        <div class="sphere-outer"></div>
+                                        <div class="sphere-inner"></div>
+                                    </div>
+                                </div>
+                                <div class="portfolio-pattern pattern-2"></div>
+                            </div>
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-info">
+                                    <span class="portfolio-category">Business • Web Design</span>
+                                    <h3 class="portfolio-title">SIVASAIPLYWOODS</h3>
+                                    <p class="portfolio-desc">Professional business website with refined aesthetics and clear structure.</p>
+                                    <div class="portfolio-meta">
+                                        <span class="meta-item">2025</span>
+                                        <span class="meta-divider">•</span>
+                                        <span class="meta-item">Website</span>
+                                    </div>
+                                    <span class="portfolio-link">View Project</span>
+                                </div>
+                            </div>
+                            <div class="portfolio-glow"></div>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- Project 3: FLIXIOS -->
+                <article class="portfolio-item" data-category="entertainment" data-reveal>
+                    <a href="https://flixiosedits.pages.dev/" target="_blank" rel="noopener" class="portfolio-card-link">
+                        <div class="portfolio-card">
+                            <div class="portfolio-visual">
+                                <div class="portfolio-gradient gradient-3"></div>
+                                <div class="portfolio-3d">
+                                    <div class="floating-ring-wrap">
+                                        <div class="ring ring-1"></div>
+                                        <div class="ring ring-2"></div>
+                                        <div class="ring ring-3"></div>
+                                    </div>
+                                </div>
+                                <div class="portfolio-pattern pattern-3"></div>
+                            </div>
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-info">
+                                    <span class="portfolio-category">Entertainment • Platform</span>
+                                    <h3 class="portfolio-title">FLIXIOS</h3>
+                                    <p class="portfolio-desc">Media & entertainment platform with dynamic content presentation.</p>
+                                    <div class="portfolio-meta">
+                                        <span class="meta-item">2025</span>
+                                        <span class="meta-divider">•</span>
+                                        <span class="meta-item">Platform</span>
+                                    </div>
+                                    <span class="portfolio-link">View Project</span>
+                                </div>
+                            </div>
+                            <div class="portfolio-glow"></div>
+                        </div>
+                    </a>
+                </article>
+                    <!-- Project 4: HABIT TRACKER 2026 -->
+                    <article class="portfolio-item" data-category="web" data-reveal>
+                        <a href="https://habitcrew2k26.netlify.app" target="_blank" rel="noopener" class="portfolio-card-link">
+                            <div class="portfolio-card">
+                                <div class="portfolio-visual">
+                                    <div class="portfolio-gradient gradient-4"></div>
+                                    <div class="portfolio-3d">
+                                        <div class="floating-cube">
+                                            <div class="cube-face front"></div>
+                                            <div class="cube-face back"></div>
+                                            <div class="cube-face top"></div>
+                                            <div class="cube-face bottom"></div>
+                                            <div class="cube-face left"></div>
+                                            <div class="cube-face right"></div>
+                                        </div>
+                                    </div>
+                                    <div class="portfolio-pattern pattern-1"></div>
+                                </div>
+                                <div class="portfolio-overlay">
+                                    <div class="portfolio-info">
+                                        <span class="portfolio-category">Project • Web App</span>
+                                        <h3 class="portfolio-title">HABIT TRACKER 2026</h3>
+                                        <p class="portfolio-desc">A modern habit tracking web app to help users build and maintain positive routines. Built for 2026.</p>
+                                        <div class="portfolio-meta">
+                                            <span class="meta-item">2026</span>
+                                            <span class="meta-divider">•</span>
+                                            <span class="meta-item">Website</span>
+                                        </div>
+                                        <span class="portfolio-link">View Project</span>
+                                    </div>
+                                </div>
+                                <div class="portfolio-glow"></div>
+                            </div>
+                        </a>
+                    </article>
+
+                <!-- Project 5: LEARN TO PRONOUNCE -->
+                <article class="portfolio-item" data-category="education" data-reveal>
+                    <a href="https://learnto-pronoun.netlify.app" target="_blank" rel="noopener" class="portfolio-card-link">
+                        <div class="portfolio-card">
+                            <div class="portfolio-visual">
+                                <div class="portfolio-gradient gradient-5"></div>
+                                <div class="portfolio-3d">
+                                    <div class="floating-sphere-wrap">
+                                        <div class="sphere-outer"></div>
+                                        <div class="sphere-inner"></div>
+                                    </div>
+                                </div>
+                                <div class="portfolio-pattern pattern-2"></div>
+                            </div>
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-info">
+                                    <span class="portfolio-category">Education • Web App</span>
+                                    <h3 class="portfolio-title">LEARN TO PRONOUNCE</h3>
+                                    <p class="portfolio-desc">An interactive education platform helping users master pronunciation with engaging learning tools.</p>
+                                    <div class="portfolio-meta">
+                                        <span class="meta-item">2026</span>
+                                        <span class="meta-divider">•</span>
+                                        <span class="meta-item">Website</span>
+                                    </div>
+                                    <span class="portfolio-link">View Project</span>
+                                </div>
+                            </div>
+                            <div class="portfolio-glow"></div>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- Project 6: FRESHFLOW EXPORTS -->
+                <article class="portfolio-item" data-category="business" data-reveal>
+                    <a href="https://freshflow.co.in" target="_blank" rel="noopener" class="portfolio-card-link">
+                        <div class="portfolio-card">
+                            <div class="portfolio-visual">
+                                <div class="portfolio-gradient gradient-6"></div>
+                                <div class="portfolio-3d">
+                                    <div class="floating-ring-wrap">
+                                        <div class="ring ring-1"></div>
+                                        <div class="ring ring-2"></div>
+                                        <div class="ring ring-3"></div>
+                                    </div>
+                                </div>
+                                <div class="portfolio-pattern pattern-3"></div>
+                            </div>
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-info">
+                                    <span class="portfolio-category">Export • Business</span>
+                                    <h3 class="portfolio-title">FRESHFLOW</h3>
+                                    <p class="portfolio-desc">Professional export business website showcasing premium products and international trade solutions.</p>
+                                    <div class="portfolio-meta">
+                                        <span class="meta-item">2026</span>
+                                        <span class="meta-divider">•</span>
+                                        <span class="meta-item">Website</span>
+                                    </div>
+                                    <span class="portfolio-link">View Project</span>
+                                </div>
+                            </div>
+                            <div class="portfolio-glow"></div>
+                        </div>
+                    </a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-3d-bg">
+            <div class="cta-particles" id="ctaParticles"></div>
+        </div>
+        <div class="container">
+            <div class="cta-content" data-reveal>
+                <h2 class="cta-title">
+                    <span class="cta-line">Have a project</span>
+                    <span class="cta-line highlight">in mind?</span>
+                </h2>
+                <p class="cta-text">Let's create something amazing together.</p>
+                <a href="contact.html" class="btn btn-primary btn-large btn-magnetic">
+                    <span class="btn-text">Start Your Project</span>
+                    <span class="btn-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                    <div class="btn-glow"></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-glow"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="footer-logo">UXI</span>
+                    <p class="footer-tagline">Unified eXperience Intelligence</p>
+                </div>
+                <div class="footer-nav">
+                    <div class="footer-col">
+                        <h4>Navigation</h4>
+                        <a href="index.html">Home</a>
+                        <a href="services.html">Services</a>
+                        <a href="work.html">Work</a>
+                        <a href="about.html">About</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Services</h4>
+                        <a href="services.html">Web Design</a>
+                        <a href="services.html">UI/UX Design</a>
+                        <a href="services.html">Branding</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Connect</h4>
+                        <a href="https://instagram.com/uxitech.in" target="_blank" rel="noopener">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/>
+                                <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/>
+                                <circle cx="18" cy="6" r="1" fill="currentColor"/>
+                            </svg>
+                            @uxitech.in
+                        </a>
+                        <a href="mailto:uxitech.in@gmail.com">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M2 7L12 13L22 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                            uxitech.in@gmail.com
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 UXI. All rights reserved.</p>
+                <p class="footer-credit">Designed with precision.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="js/3d-effects.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

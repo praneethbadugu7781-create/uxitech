@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About UXI — We craft digital experiences that move people and drive results.">
+    <title>About — UXI</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/3d-effects.css">
+    <style>
+        /* About Page Specific Creative Styles */
+        .about-hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 100px;
+        }
+
+        .about-hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-hero-text {
+            z-index: 2;
+        }
+
+        .about-tagline {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+            font-weight: 500;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .about-tagline::before {
+            content: '';
+            width: 40px;
+            height: 2px;
+            background: var(--color-accent);
+        }
+
+        .about-main-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            margin-bottom: 2rem;
+        }
+
+        .title-line {
+            display: block;
+        }
+
+        .title-line.gradient {
+            background: linear-gradient(135deg, #0066ff 0%, #00d4ff 50%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-intro-text {
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+            max-width: 500px;
+        }
+
+        .about-visual {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .floating-text-circle {
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            animation: rotateText 20s linear infinite;
+        }
+
+        .floating-text-circle svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .floating-text-circle text {
+            fill: var(--color-accent);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+        }
+
+        @keyframes rotateText {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .center-logo {
+            position: absolute;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Manifesto Section */
+        .manifesto-section {
+            padding: 8rem 0;
+            background: var(--color-bg-elevated);
+            position: relative;
+        }
+
+        .manifesto-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0;
+        }
+
+        .manifesto-item {
+            padding: 4rem;
+            border: 1px solid var(--color-border);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .manifesto-item:hover {
+            background: rgba(0, 102, 255, 0.05);
+            border-color: var(--color-accent);
+        }
+
+        .manifesto-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 6rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            opacity: 0.15;
+            position: absolute;
+            top: -1rem;
+            right: 2rem;
+            line-height: 1;
+        }
+
+        .manifesto-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--color-text);
+        }
+
+        .manifesto-desc {
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Big Statement */
+        .statement-section {
+            padding: 10rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .big-statement {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            letter-spacing: -0.03em;
+        }
+
+        .statement-highlight {
+            color: var(--color-accent);
+            position: relative;
+        }
+
+        .statement-highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 0.1em;
+            left: 0;
+            width: 100%;
+            height: 0.15em;
+            background: var(--color-accent);
+            opacity: 0.3;
+        }
+
+        /* Stats Reimagined */
+        .stats-creative {
+            padding: 6rem 0;
+            background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-elevated) 100%);
+        }
+
+        .stats-flex {
+            display: flex;
+            justify-content: center;
+            gap: 6rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-creative {
+            text-align: center;
+            position: relative;
+        }
+
+        .stat-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(4rem, 10vw, 7rem);
+            font-weight: 700;
+            line-height: 1;
+            background: linear-gradient(180deg, var(--color-text) 0%, var(--color-text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-suffix {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            color: var(--color-accent);
+        }
+
+        .stat-name {
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--color-text-tertiary);
+            margin-top: 0.5rem;
+        }
+
+        /* Process Section */
+        .process-section {
+            padding: 8rem 0;
+        }
+
+        .process-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .process-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .process-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+
+        .process-timeline {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            position: relative;
+        }
+
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light), var(--color-accent));
+            opacity: 0.3;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--color-bg-card);
+            border: 2px solid var(--color-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover .step-number {
+            background: var(--color-accent);
+            color: var(--color-bg);
+            transform: scale(1.1);
+            box-shadow: 0 0 40px var(--color-accent-glow);
+        }
+
+        .step-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .step-desc {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Connect Section */
+        .connect-section {
+            padding: 8rem 0;
+            background: var(--color-bg-elevated);
+            text-align: center;
+        }
+
+        .connect-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+        }
+
+        .connect-text {
+            font-size: 1.2rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-full);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 500;
+            color: var(--color-text);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            border-color: var(--color-accent);
+            background: rgba(0, 102, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .social-link svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .about-hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .about-tagline {
+                justify-content: center;
+            }
+
+            .about-tagline::before {
+                display: none;
+            }
+
+            .about-intro-text {
+                margin: 0 auto;
+            }
+
+            .about-visual {
+                height: 300px;
+            }
+
+            .floating-text-circle {
+                width: 250px;
+                height: 250px;
+            }
+
+            .center-logo {
+                font-size: 3rem;
+            }
+
+            .manifesto-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-timeline {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .process-timeline::before {
+                display: none;
+            }
+            
+            .about-main-title {
+                font-size: clamp(2rem, 10vw, 4rem);
+            }
+            
+            .big-statement {
+                font-size: clamp(1.5rem, 5vw, 2.5rem);
+                padding: 0 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stats-flex {
+                gap: 2rem;
+                flex-direction: column;
+            }
+
+            .process-timeline {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .manifesto-item {
+                padding: 1.5rem;
+            }
+            
+            .manifesto-number {
+                font-size: 4rem;
+                right: 1rem;
+            }
+            
+            .manifesto-title {
+                font-size: 1.25rem;
+            }
+            
+            .manifesto-desc {
+                font-size: 0.875rem;
+            }
+            
+            .step-number {
+                width: 60px;
+                height: 60px;
+                font-size: 1.25rem;
+            }
+            
+            .step-title {
+                font-size: 1rem;
+            }
+            
+            .step-desc {
+                font-size: 0.8rem;
+            }
+            
+            .stat-value {
+                font-size: 3.5rem;
+            }
+            
+            .stat-suffix {
+                font-size: 1.5rem;
+            }
+            
+            .connect-title {
+                font-size: 1.75rem;
+            }
+            
+            .connect-text {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+            
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .social-link {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+            
+            .process-header .process-title {
+                font-size: 1.75rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .about-hero-section {
+                padding-top: 80px;
+            }
+            
+            .about-main-title {
+                font-size: 2rem;
+            }
+            
+            .about-intro-text {
+                font-size: 1rem;
+            }
+            
+            .about-visual {
+                height: 250px;
+            }
+            
+            .floating-text-circle {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .center-logo {
+                font-size: 2.5rem;
+            }
+            
+            .stat-value {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body data-page="about">
+    <canvas id="webgl-canvas"></canvas>
+    <div class="cursor-glow" id="cursorGlow"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <div class="page-transition">
+        <div class="transition-logo">UXI</div>
+        <div class="transition-bars">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-text">UXI</span>
+                <span class="logo-dot"></span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="work.html">Work</a>
+                <a href="about.html" class="active">About</a>
+                <a href="contact.html" class="nav-cta">Start a Project</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-bg"></div>
+        <div class="mobile-menu-content">
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="work.html">Work</a>
+            <a href="about.html" class="active">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="about-hero-section">
+        <div class="container">
+            <div class="about-hero-content">
+                <div class="about-hero-text" data-reveal>
+                    <span class="about-tagline">Digital Design Studio</span>
+                    <h1 class="about-main-title">
+                        <span class="title-line">We craft</span>
+                        <span class="title-line gradient">experiences</span>
+                        <span class="title-line">that matter.</span>
+                    </h1>
+                    <p class="about-intro-text">
+                        UXI is where strategy meets creativity. We don't just design websites—we build digital experiences that connect brands with people on a deeper level.
+                    </p>
+                </div>
+                <div class="about-visual" data-reveal>
+                    <div class="floating-text-circle">
+                        <svg viewBox="0 0 350 350">
+                            <defs>
+                                <path id="textCircle" d="M 175,175 m -130,0 a 130,130 0 1,1 260,0 a 130,130 0 1,1 -260,0"/>
+                            </defs>
+                            <text>
+                                <textPath href="#textCircle">DESIGN • CREATE • INNOVATE • INSPIRE • </textPath>
+                            </text>
+                        </svg>
+                    </div>
+                    <span class="center-logo">UXI</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-gradient-orbs">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+        </div>
+    </section>
+
+    <!-- Big Statement -->
+    <section class="statement-section">
+        <div class="container">
+            <p class="big-statement" data-reveal>
+                We believe <span class="statement-highlight">great design</span> is invisible. It doesn't demand attention—it guides it.
+            </p>
+        </div>
+    </section>
+
+    <!-- Manifesto -->
+    <section class="manifesto-section">
+        <div class="container">
+            <div class="manifesto-grid">
+                <div class="manifesto-item" data-reveal>
+                    <span class="manifesto-number">01</span>
+                    <h3 class="manifesto-title">Pixel Perfect</h3>
+                    <p class="manifesto-desc">Every detail matters. We obsess over the smallest elements because we know they make the biggest difference in how people experience your brand.</p>
+                </div>
+                <div class="manifesto-item" data-reveal>
+                    <span class="manifesto-number">02</span>
+                    <h3 class="manifesto-title">Strategy First</h3>
+                    <p class="manifesto-desc">Beautiful design without purpose is just decoration. We start with why, then craft solutions that drive real results for your business.</p>
+                </div>
+                <div class="manifesto-item" data-reveal>
+                    <span class="manifesto-number">03</span>
+                    <h3 class="manifesto-title">Human Centered</h3>
+                    <p class="manifesto-desc">Technology serves people, not the other way around. Our designs prioritize the humans who will interact with them every day.</p>
+                </div>
+                <div class="manifesto-item" data-reveal>
+                    <span class="manifesto-number">04</span>
+                    <h3 class="manifesto-title">Future Ready</h3>
+                    <p class="manifesto-desc">We build with tomorrow in mind. Scalable, flexible, and designed to grow with your ambitions and the evolving digital landscape.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Creative Stats -->
+    <section class="stats-creative">
+        <div class="container">
+            <div class="stats-flex">
+                <div class="stat-creative" data-reveal>
+                    <div>
+                        <span class="stat-value">50</span>
+                        <span class="stat-suffix">+</span>
+                    </div>
+                    <p class="stat-name">Projects Shipped</p>
+                </div>
+                <div class="stat-creative" data-reveal>
+                    <div>
+                        <span class="stat-value">100</span>
+                        <span class="stat-suffix">%</span>
+                    </div>
+                    <p class="stat-name">Client Satisfaction</p>
+                </div>
+                <div class="stat-creative" data-reveal>
+                    <div>
+                        <span class="stat-value">24</span>
+                        <span class="stat-suffix">/7</span>
+                    </div>
+                    <p class="stat-name">Dedication</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section class="process-section">
+        <div class="container">
+            <div class="process-header" data-reveal>
+                <p class="process-label">How We Work</p>
+                <h2 class="process-title">From idea to reality</h2>
+            </div>
+            <div class="process-timeline">
+                <div class="process-step" data-reveal>
+                    <div class="step-number">01</div>
+                    <h3 class="step-title">Discover</h3>
+                    <p class="step-desc">We dive deep into your brand, goals, and audience to understand what success looks like.</p>
+                </div>
+                <div class="process-step" data-reveal>
+                    <div class="step-number">02</div>
+                    <h3 class="step-title">Design</h3>
+                    <p class="step-desc">Concepts come to life through iterative design that balances creativity with functionality.</p>
+                </div>
+                <div class="process-step" data-reveal>
+                    <div class="step-number">03</div>
+                    <h3 class="step-title">Develop</h3>
+                    <p class="step-desc">Clean code meets beautiful design. We build with performance and scalability in mind.</p>
+                </div>
+                <div class="process-step" data-reveal>
+                    <div class="step-number">04</div>
+                    <h3 class="step-title">Deliver</h3>
+                    <p class="step-desc">Launch day and beyond. We ensure everything runs smoothly and support your growth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Connect -->
+    <section class="connect-section">
+        <div class="container">
+            <h2 class="connect-title" data-reveal>Let's Connect</h2>
+            <p class="connect-text" data-reveal>Follow our journey, see our latest work, or just say hello. We're always excited to meet new people.</p>
+            <div class="social-links" data-reveal>
+                <a href="https://instagram.com/uxitech.in" target="_blank" rel="noopener" class="social-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="2" y="2" width="20" height="20" rx="5"/>
+                        <circle cx="12" cy="12" r="4"/>
+                        <circle cx="18" cy="6" r="1" fill="currentColor" stroke="none"/>
+                    </svg>
+                    @uxitech.in
+                </a>
+                <a href="mailto:uxitech.in@gmail.com" class="social-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <path d="M2 7L12 13L22 7"/>
+                    </svg>
+                    uxitech.in@gmail.com
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-3d-bg">
+            <div class="cta-particles" id="ctaParticles"></div>
+        </div>
+        <div class="container">
+            <div class="cta-content" data-reveal>
+                <h2 class="cta-title">
+                    <span class="cta-line">Ready to build</span>
+                    <span class="cta-line highlight">something great?</span>
+                </h2>
+                <p class="cta-text">Let's turn your vision into reality.</p>
+                <a href="contact.html" class="btn btn-primary btn-large btn-magnetic">
+                    <span class="btn-text">Start a Project</span>
+                    <span class="btn-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                    <div class="btn-glow"></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-glow"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="footer-logo">UXI</span>
+                    <p class="footer-tagline">Unified eXperience Intelligence</p>
+                </div>
+                <div class="footer-nav">
+                    <div class="footer-col">
+                        <h4>Navigation</h4>
+                        <a href="index.html">Home</a>
+                        <a href="services.html">Services</a>
+                        <a href="work.html">Work</a>
+                        <a href="about.html">About</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Services</h4>
+                        <a href="services.html">Web Design</a>
+                        <a href="services.html">UI/UX Design</a>
+                        <a href="services.html">Branding</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Connect</h4>
+                        <a href="https://instagram.com/uxitech.in" target="_blank" rel="noopener">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/>
+                                <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/>
+                                <circle cx="18" cy="6" r="1" fill="currentColor"/>
+                            </svg>
+                            @uxitech.in
+                        </a>
+                        <a href="mailto:uxitech.in@gmail.com">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M2 7L12 13L22 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                            uxitech.in@gmail.com
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 UXI. All rights reserved.</p>
+                <p class="footer-credit">Designed with precision.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="js/3d-effects.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
