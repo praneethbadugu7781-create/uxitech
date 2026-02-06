@@ -1119,7 +1119,7 @@ section {
 @media (max-width: 480px) {
     :root {
         --font-size-hero: 3rem;
-        --container-padding: 1rem;
+        --container-padding: 12px;
     }
     
     .hero-headline {
@@ -1138,4 +1138,15 @@ section {
         padding: 12px 20px;
         font-size: 0.875rem;
     }
+}
+
+/* Global overflow fix */
+html {
+    overflow-x: hidden;
+}
+
+body {
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
 }
