@@ -24,20 +24,16 @@ const WorksLoader = {
     
     async loadWorks() {
         try {
-            // Show loading state
-            this.portfolioGrid.innerHTML = '<div class="loading-works">Loading projects...</div>';
-            
-            // Fetch works from Firebase
+            // Fetch works from Firebase (don't clear existing static content)
             this.allWorks = await getAllWorks();
             
             if (this.allWorks.length === 0) {
-                // If no works in Firebase, keep static content (fallback)
-                this.portfolioGrid.innerHTML = '<div class="no-works">No projects available.</div>';
+                // No Firebase works, keep static content as-is
                 return;
             }
             
-            // Render works
-            this.renderWorks(this.allWorks);
+            // APPEND Firebase works to existing static content
+            this.appendWorks(this.allWorks);
             
             // Re-initialize reveal animations
             this.initRevealAnimations();
@@ -46,6 +42,12 @@ const WorksLoader = {
             console.error('Error loading works:', error);
             // Keep existing static content on error
         }
+    },
+    
+    appendWorks(works) {
+        const html = works.map((work, index) => this.createWorkCard(work, index)).join('');
+        // Insert Firebase works at the BEGINNING of the grid
+        this.portfolioGrid.insertAdjacentHTML('afterbegin', html);
     },
     
     renderWorks(works) {
