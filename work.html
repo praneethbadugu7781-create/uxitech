@@ -97,7 +97,7 @@
                 <button class="filter-btn" data-filter="entertainment">Entertainment</button>
             </div>
 
-            <div class="portfolio-grid">
+            <div class="portfolio-grid" id="dynamicPortfolioGrid">
                 <!-- Project 1: WASSHOT -->
                 <article class="portfolio-item" data-category="web" data-reveal>
                     <a href="https://wasshot.in" target="_blank" rel="noopener" class="portfolio-card-link">
@@ -450,5 +450,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="js/3d-effects.js"></script>
     <script src="js/main.js"></script>
+    
+    <!-- Firebase SDK for Dynamic Works (Optional - uncomment to enable) -->
+    <!--
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/works-loader.js"></script>
+    -->
 </body>
 </html>

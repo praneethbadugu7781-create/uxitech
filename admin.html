@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Admin Panel — UXI</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body data-page="admin">
+    <!-- Login Section -->
+    <div class="admin-login" id="loginSection">
+        <div class="login-container">
+            <div class="login-header">
+                <h1 class="login-logo">UXI</h1>
+                <p class="login-subtitle">Admin Panel</p>
+            </div>
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="admin@uxitech.in">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary btn-full" id="loginBtn">
+                    <span class="btn-text">Sign In</span>
+                </button>
+                <p class="login-error" id="loginError"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div class="admin-dashboard" id="dashboardSection" style="display: none;">
+        <!-- Admin Header -->
+        <header class="admin-header">
+            <div class="admin-header-content">
+                <div class="admin-brand">
+                    <span class="admin-logo">UXI</span>
+                    <span class="admin-label">Admin</span>
+                </div>
+                <div class="admin-actions">
+                    <a href="index.html" class="btn btn-secondary btn-sm" target="_blank">View Site</a>
+                    <button class="btn btn-outline btn-sm" id="logoutBtn">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <main class="admin-main">
+            <div class="admin-container">
+                <!-- Stats Overview -->
+                <div class="admin-stats">
+                    <div class="stat-card">
+                        <span class="stat-number" id="totalWorks">0</span>
+                        <span class="stat-label">Total Works</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="webDesignCount">0</span>
+                        <span class="stat-label">Web Design</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="businessCount">0</span>
+                        <span class="stat-label">Business</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="educationCount">0</span>
+                        <span class="stat-label">Education</span>
+                    </div>
+                </div>
+
+                <!-- Add Work Section -->
+                <section class="admin-section">
+                    <div class="section-header">
+                        <h2>Add New Work</h2>
+                    </div>
+                    <form class="add-work-form" id="addWorkForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="workTitle">Project Title <span class="required">*</span></label>
+                                <input type="text" id="workTitle" name="title" required placeholder="e.g., WASSHOT">
+                            </div>
+                            <div class="form-group">
+                                <label for="workLink">Project Link <span class="required">*</span></label>
+                                <input type="url" id="workLink" name="link" required placeholder="https://example.com">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="workCategory">Category <span class="required">*</span></label>
+                                <select id="workCategory" name="category" required>
+                                    <option value="" disabled selected>Select category</option>
+                                    <option value="web">Web Design</option>
+                                    <option value="business">Business</option>
+                                    <option value="education">Education</option>
+                                    <option value="entertainment">Entertainment</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="workType">Type Label</label>
+                                <input type="text" id="workType" name="type" placeholder="e.g., Creative Brand • Web Design">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="workYear">Year</label>
+                                <input type="number" id="workYear" name="year" placeholder="2026" value="2026">
+                            </div>
+                            <div class="form-group">
+                                <label for="workMeta">Meta Type</label>
+                                <input type="text" id="workMeta" name="metaType" placeholder="e.g., Website, Platform, E-commerce">
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="workDescription">Description <span class="required">*</span></label>
+                            <textarea id="workDescription" name="description" required placeholder="Brief description of the project..." rows="3"></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="workVisual">Visual Style</label>
+                                <select id="workVisual" name="visual">
+                                    <option value="cube" selected>Floating Cube</option>
+                                    <option value="sphere">Floating Sphere</option>
+                                    <option value="ring">Floating Rings</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="workGradient">Gradient Color</label>
+                                <select id="workGradient" name="gradient">
+                                    <option value="1" selected>Blue</option>
+                                    <option value="2">Cyan</option>
+                                    <option value="3">Purple</option>
+                                    <option value="4">Green</option>
+                                    <option value="5">Orange</option>
+                                    <option value="6">Pink</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="addWorkBtn">
+                            <span class="btn-text">Add Work</span>
+                        </button>
+                    </form>
+                </section>
+
+                <!-- Works List -->
+                <section class="admin-section">
+                    <div class="section-header">
+                        <h2>Manage Works</h2>
+                        <button class="btn btn-outline btn-sm" id="refreshWorksBtn">Refresh</button>
+                    </div>
+                    <div class="works-list" id="worksList">
+                        <div class="loading-state">Loading works...</div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Edit Work Modal -->
+    <div class="modal" id="editModal" style="display: none;">
+        <div class="modal-backdrop" id="modalBackdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Work</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <form class="edit-work-form" id="editWorkForm">
+                <input type="hidden" id="editWorkId">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editTitle">Project Title <span class="required">*</span></label>
+                        <input type="text" id="editTitle" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editLink">Project Link <span class="required">*</span></label>
+                        <input type="url" id="editLink" name="link" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editCategory">Category <span class="required">*</span></label>
+                        <select id="editCategory" name="category" required>
+                            <option value="web">Web Design</option>
+                            <option value="business">Business</option>
+                            <option value="education">Education</option>
+                            <option value="entertainment">Entertainment</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="editType">Type Label</label>
+                        <input type="text" id="editType" name="type">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editYear">Year</label>
+                        <input type="number" id="editYear" name="year">
+                    </div>
+                    <div class="form-group">
+                        <label for="editMeta">Meta Type</label>
+                        <input type="text" id="editMeta" name="metaType">
+                    </div>
+                </div>
+                <div class="form-group full-width">
+                    <label for="editDescription">Description <span class="required">*</span></label>
+                    <textarea id="editDescription" name="description" required rows="3"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editVisual">Visual Style</label>
+                        <select id="editVisual" name="visual">
+                            <option value="cube">Floating Cube</option>
+                            <option value="sphere">Floating Sphere</option>
+                            <option value="ring">Floating Rings</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="editGradient">Gradient Color</label>
+                        <select id="editGradient" name="gradient">
+                            <option value="1">Blue</option>
+                            <option value="2">Cyan</option>
+                            <option value="3">Purple</option>
+                            <option value="4">Green</option>
+                            <option value="5">Orange</option>
+                            <option value="6">Pink</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-outline" id="cancelEditBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal" id="deleteModal" style="display: none;">
+        <div class="modal-backdrop" id="deleteBackdrop"></div>
+        <div class="modal-content modal-small">
+            <div class="modal-header">
+                <h3>Delete Work</h3>
+                <button class="modal-close" id="closeDeleteModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete "<strong id="deleteWorkTitle"></strong>"?</p>
+                <p class="text-muted">This action cannot be undone.</p>
+            </div>
+            <div class="modal-actions">
+                <input type="hidden" id="deleteWorkId">
+                <button type="button" class="btn btn-outline" id="cancelDeleteBtn">Cancel</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Firebase Config & Admin Scripts -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
