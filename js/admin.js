@@ -3,22 +3,37 @@
    ======================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-    AdminPanel.init();
+    console.log('Admin panel loading...');
+    // Give Firebase time to initialize
+    setTimeout(() => {
+        AdminPanel.init();
+    }, 500);
 });
 
 const AdminPanel = {
     works: [],
     
     init() {
-        this.cacheElements();
-        this.bindEvents();
-        this.checkAuth();
+        console.log('Initializing AdminPanel...');
+        try {
+            this.cacheElements();
+            this.bindEvents();
+            this.checkAuth();
+            console.log('AdminPanel initialized successfully');
+        } catch (error) {
+            console.error('AdminPanel init error:', error);
+            alert('Error loading admin panel: ' + error.message);
+        }
     },
     
     cacheElements() {
         // Sections
         this.loginSection = document.getElementById('loginSection');
         this.dashboardSection = document.getElementById('dashboardSection');
+        
+        if (!this.loginSection || !this.dashboardSection) {
+            throw new Error('Required sections not found');
+        }
         
         // Forms
         this.loginForm = document.getElementById('loginForm');
@@ -45,6 +60,8 @@ const AdminPanel = {
         
         // Error displays
         this.loginError = document.getElementById('loginError');
+        
+        console.log('Elements cached successfully');
     },
     
     bindEvents() {
@@ -75,14 +92,26 @@ const AdminPanel = {
     },
     
     checkAuth() {
-        onAuthStateChanged((user) => {
-            if (user) {
-                this.showDashboard();
-                this.loadWorks();
-            } else {
+        console.log('Checking auth state...');
+        try {
+            if (typeof onAuthStateChanged !== 'function') {
+                console.error('Firebase auth not available');
                 this.showLogin();
+                return;
             }
-        });
+            onAuthStateChanged((user) => {
+                console.log('Auth state changed:', user ? 'logged in' : 'logged out');
+                if (user) {
+                    this.showDashboard();
+                    this.loadWorks();
+                } else {
+                    this.showLogin();
+                }
+            });
+        } catch (error) {
+            console.error('Auth check error:', error);
+            this.showLogin();
+        }
     },
     
     showLogin() {
@@ -97,21 +126,36 @@ const AdminPanel = {
     
     async handleLogin(e) {
         e.preventDefault();
+        console.log('Login attempt...');
         
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
         const loginBtn = document.getElementById('loginBtn');
         
+        if (!email || !password) {
+            this.loginError.textContent = 'Please enter email and password';
+            return;
+        }
+        
         loginBtn.disabled = true;
         loginBtn.innerHTML = '<span class="btn-text">Signing in...</span>';
+        this.loginError.textContent = '';
         
-        const result = await signIn(email, password);
-        
-        if (result.success) {
-            this.loginError.textContent = '';
-            this.showToast('Welcome back!', 'success');
-        } else {
-            this.loginError.textContent = result.error;
+        try {
+            const result = await signIn(email, password);
+            console.log('Login result:', result);
+            
+            if (result.success) {
+                this.loginError.textContent = '';
+                this.showToast('Welcome back!', 'success');
+            } else {
+                this.loginError.textContent = result.error || 'Login failed. Check credentials.';
+                loginBtn.disabled = false;
+                loginBtn.innerHTML = '<span class="btn-text">Sign In</span>';
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+            this.loginError.textContent = 'Login failed: ' + error.message;
             loginBtn.disabled = false;
             loginBtn.innerHTML = '<span class="btn-text">Sign In</span>';
         }
@@ -125,11 +169,18 @@ const AdminPanel = {
     },
     
     async loadWorks() {
+        console.log('Loading works...');
         this.worksList.innerHTML = '<div class="loading-state">Loading works...</div>';
         
-        this.works = await getAllWorks();
-        this.updateStats();
-        this.renderWorksList();
+        try {
+            this.works = await getAllWorks();
+            console.log('Works loaded:', this.works.length);
+            this.updateStats();
+            this.renderWorksList();
+        } catch (error) {
+            console.error('Error loading works:', error);
+            this.worksList.innerHTML = '<div class="empty-state" style="color: #ff6b6b;">Error loading works. Check Firestore rules.</div>';
+        }
     },
     
     updateStats() {
@@ -184,32 +235,41 @@ const AdminPanel = {
     
     async handleAddWork(e) {
         e.preventDefault();
+        console.log('Adding new work...');
         
         const addBtn = document.getElementById('addWorkBtn');
         addBtn.disabled = true;
         addBtn.innerHTML = '<span class="btn-text">Adding...</span>';
         
-        const workData = {
-            title: document.getElementById('workTitle').value.trim(),
-            link: document.getElementById('workLink').value.trim(),
-            category: document.getElementById('workCategory').value,
-            type: document.getElementById('workType').value.trim() || `${this.getCategoryLabel(document.getElementById('workCategory').value)} • Website`,
-            year: document.getElementById('workYear').value || '2026',
-            metaType: document.getElementById('workMeta').value.trim() || 'Website',
-            description: document.getElementById('workDescription').value.trim(),
-            visual: document.getElementById('workVisual').value,
-            gradient: document.getElementById('workGradient').value
-        };
-        
-        const result = await addWork(workData);
-        
-        if (result.success) {
-            this.showToast('Work added successfully!', 'success');
-            this.addWorkForm.reset();
-            document.getElementById('workYear').value = '2026';
-            this.loadWorks();
-        } else {
-            this.showToast('Error adding work: ' + result.error, 'error');
+        try {
+            const workData = {
+                title: document.getElementById('workTitle').value.trim(),
+                link: document.getElementById('workLink').value.trim(),
+                category: document.getElementById('workCategory').value,
+                type: document.getElementById('workType').value.trim() || `${this.getCategoryLabel(document.getElementById('workCategory').value)} • Website`,
+                year: document.getElementById('workYear').value || '2026',
+                metaType: document.getElementById('workMeta').value.trim() || 'Website',
+                description: document.getElementById('workDescription').value.trim(),
+                visual: document.getElementById('workVisual').value,
+                gradient: document.getElementById('workGradient').value
+            };
+            
+            console.log('Work data:', workData);
+            
+            const result = await addWork(workData);
+            console.log('Add result:', result);
+            
+            if (result.success) {
+                this.showToast('Work added successfully!', 'success');
+                this.addWorkForm.reset();
+                document.getElementById('workYear').value = '2026';
+                this.loadWorks();
+            } else {
+                this.showToast('Error adding work: ' + result.error, 'error');
+            }
+        } catch (error) {
+            console.error('Add work error:', error);
+            this.showToast('Error: ' + error.message, 'error');
         }
         
         addBtn.disabled = false;

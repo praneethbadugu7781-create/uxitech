@@ -13,17 +13,21 @@ const firebaseConfig = {
     appId: "1:740014052323:web:f1f6bfe214371a005b46d6"
 };
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+// Initialize Firebase with error handling
+let db, auth, worksCollection;
+let firebaseInitialized = false;
 
-// Initialize Firestore
-const db = firebase.firestore();
-
-// Initialize Auth
-const auth = firebase.auth();
-
-// Collection reference for works/projects
-const worksCollection = db.collection('works');
+try {
+    firebase.initializeApp(firebaseConfig);
+    db = firebase.firestore();
+    auth = firebase.auth();
+    worksCollection = db.collection('works');
+    firebaseInitialized = true;
+    console.log('Firebase initialized successfully');
+} catch (error) {
+    console.error('Firebase initialization error:', error);
+    alert('Firebase connection failed. Please check your internet connection.');
+}
 
 /* ----------------------------------------
    Work/Project Data Functions
