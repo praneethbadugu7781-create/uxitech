@@ -986,6 +986,110 @@
             .cube-face.top { transform: rotateX(90deg) translateZ(75px); }
             .cube-face.bottom { transform: rotateX(-90deg) translateZ(75px); }
         }
+
+        /* === NEW SERVICE VISUALS === */
+
+        /* Automation Workflow Visual */
+        .automation-3d { position: absolute; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+        .workflow-container { position: relative; width: 400px; height: 400px; }
+        .workflow-node { position: absolute; width: 90px; height: 90px; background: rgba(255,255,255,0.03); backdrop-filter: blur(20px); border: 1px solid rgba(0,102,255,0.3); border-radius: 20px; display: flex; align-items: center; justify-content: center; transition: all 0.4s ease; }
+        .workflow-node:hover { border-color: rgba(0,102,255,0.8); box-shadow: 0 0 30px rgba(0,102,255,0.3); transform: scale(1.1); }
+        .workflow-node svg { width: 36px; height: 36px; color: var(--color-accent); }
+        .workflow-node.node-1 { top: 0; left: 50%; transform: translateX(-50%); animation: nodeFloat 5s ease-in-out infinite; }
+        .workflow-node.node-2 { top: 35%; right: 0; animation: nodeFloat 5s ease-in-out infinite 0.5s; }
+        .workflow-node.node-3 { bottom: 0; left: 50%; transform: translateX(-50%); animation: nodeFloat 5s ease-in-out infinite 1s; }
+        .workflow-node.node-4 { top: 35%; left: 0; animation: nodeFloat 5s ease-in-out infinite 1.5s; }
+        .workflow-node.node-center { top: 50%; left: 50%; transform: translate(-50%,-50%); width: 110px; height: 110px; background: linear-gradient(135deg, rgba(0,102,255,0.2), rgba(0,212,255,0.1)); border-color: rgba(0,212,255,0.5); border-radius: 50%; }
+        .workflow-node.node-center svg { width: 44px; height: 44px; color: #00d4ff; }
+        @keyframes nodeFloat { 0%,100%{ filter: brightness(1); } 50%{ filter: brightness(1.3); } }
+        .workflow-line { position: absolute; background: linear-gradient(90deg, rgba(0,102,255,0.1), rgba(0,102,255,0.4), rgba(0,102,255,0.1)); z-index: -1; }
+        .workflow-line.h { height: 2px; width: 80px; top: 50%; }
+        .workflow-line.h.left { left: 90px; }
+        .workflow-line.h.right { right: 90px; }
+        .workflow-line.v { width: 2px; height: 80px; left: 50%; }
+        .workflow-line.v.top { top: 90px; }
+        .workflow-line.v.bottom { bottom: 90px; }
+        .workflow-pulse { position: absolute; top: 50%; left: 50%; width: 300px; height: 300px; transform: translate(-50%,-50%); border-radius: 50%; border: 1px solid rgba(0,102,255,0.1); animation: wfPulse 4s ease-in-out infinite; z-index: -2; }
+        .workflow-pulse:nth-child(2) { width: 380px; height: 380px; animation-delay: 1s; }
+        @keyframes wfPulse { 0%,100%{ opacity: 0.3; transform: translate(-50%,-50%) scale(1); } 50%{ opacity: 0.7; transform: translate(-50%,-50%) scale(1.05); } }
+
+        /* Marketing Analytics Visual */
+        .analytics-3d { position: absolute; width: 100%; max-width: 420px; background: linear-gradient(180deg, rgba(30,30,40,0.9), rgba(20,20,30,0.95)); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; overflow: hidden; box-shadow: 0 50px 100px rgba(0,0,0,0.5); transform: rotateY(-8deg) rotateX(4deg); transition: transform 0.5s ease; left: 50%; top: 50%; margin-left: -210px; margin-top: -180px; }
+        .service-mega:hover .analytics-3d { transform: rotateY(-3deg) rotateX(1deg) translateY(-10px); }
+        .analytics-header { padding: 16px 24px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: space-between; }
+        .analytics-header span { font-size: 0.875rem; font-weight: 600; color: var(--color-text-secondary); }
+        .analytics-body { padding: 24px; }
+        .analytics-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 24px; }
+        .analytics-stat { text-align: center; padding: 12px; background: rgba(255,255,255,0.02); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
+        .analytics-stat .val { font-size: 1.5rem; font-weight: 700; color: var(--color-accent); }
+        .analytics-stat .lbl { font-size: 0.7rem; color: var(--color-text-secondary); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .analytics-chart { display: flex; align-items: flex-end; gap: 8px; height: 100px; padding: 16px 0; }
+        .chart-bar { flex: 1; background: linear-gradient(to top, rgba(0,102,255,0.3), rgba(0,212,255,0.6)); border-radius: 6px 6px 0 0; animation: barGrow 2s ease-out forwards; transform-origin: bottom; }
+        @keyframes barGrow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+        .chart-bar:nth-child(1) { height: 60%; animation-delay: 0.1s; }
+        .chart-bar:nth-child(2) { height: 85%; animation-delay: 0.2s; }
+        .chart-bar:nth-child(3) { height: 45%; animation-delay: 0.3s; }
+        .chart-bar:nth-child(4) { height: 95%; animation-delay: 0.4s; }
+        .chart-bar:nth-child(5) { height: 70%; animation-delay: 0.5s; }
+        .chart-bar:nth-child(6) { height: 55%; animation-delay: 0.6s; }
+        .chart-bar:nth-child(7) { height: 80%; animation-delay: 0.7s; }
+
+        /* Social Media Visual */
+        .social-3d { position: absolute; width: 280px; background: linear-gradient(180deg, rgba(30,30,40,0.95), rgba(20,20,30,0.98)); border: 1px solid rgba(255,255,255,0.1); border-radius: 36px; overflow: hidden; box-shadow: 0 50px 100px rgba(0,0,0,0.5); left: 50%; top: 50%; margin-left: -140px; margin-top: -250px; transform: rotateY(8deg) rotateX(-4deg); transition: transform 0.5s ease; }
+        .service-mega:hover .social-3d { transform: rotateY(3deg) rotateX(-1deg) translateY(-10px); }
+        .social-notch { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 90px; height: 26px; background: #000; border-radius: 20px; z-index: 5; }
+        .social-content { padding: 50px 16px 20px; }
+        .social-profile { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .social-avatar { width: 44px; height: 44px; background: linear-gradient(135deg, var(--color-accent), #00d4ff); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem; }
+        .social-name { font-size: 0.9rem; font-weight: 600; }
+        .social-handle { font-size: 0.75rem; color: var(--color-text-secondary); }
+        .social-stats-row { display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); margin-bottom: 16px; }
+        .social-stat-item { text-align: center; }
+        .social-stat-item .num { font-size: 1rem; font-weight: 700; }
+        .social-stat-item .txt { font-size: 0.65rem; color: var(--color-text-secondary); }
+        .social-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3px; border-radius: 8px; overflow: hidden; }
+        .social-grid-item { aspect-ratio: 1; background: rgba(255,255,255,0.05); }
+        .social-grid-item:nth-child(odd) { background: linear-gradient(135deg, rgba(0,102,255,0.15), rgba(0,212,255,0.1)); }
+        .social-grid-item:nth-child(even) { background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(0,102,255,0.08)); }
+
+        /* Video Production Visual */
+        .video-3d { position: absolute; width: 100%; max-width: 460px; background: linear-gradient(180deg, rgba(30,30,40,0.9), rgba(20,20,30,0.95)); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; overflow: hidden; box-shadow: 0 50px 100px rgba(0,0,0,0.5); transform: rotateY(-6deg) rotateX(3deg); transition: transform 0.5s ease; }
+        .service-mega:hover .video-3d { transform: rotateY(-2deg) rotateX(1deg) translateY(-10px); }
+        .video-toolbar { display: flex; align-items: center; gap: 8px; padding: 12px 16px; background: rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .video-toolbar .dots { display: flex; gap: 6px; }
+        .video-toolbar .dots span { width: 10px; height: 10px; border-radius: 50%; }
+        .video-toolbar .dots span:nth-child(1) { background: #ff5f56; }
+        .video-toolbar .dots span:nth-child(2) { background: #ffbd2e; }
+        .video-toolbar .dots span:nth-child(3) { background: #27ca40; }
+        .video-preview { height: 200px; background: linear-gradient(135deg, rgba(0,102,255,0.1), rgba(0,0,0,0.3)); display: flex; align-items: center; justify-content: center; position: relative; }
+        .play-btn { width: 64px; height: 64px; background: linear-gradient(135deg, var(--color-accent), #00d4ff); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 10px 40px rgba(0,102,255,0.4); animation: playPulse 2s ease-in-out infinite; }
+        .play-btn svg { width: 28px; height: 28px; color: white; margin-left: 4px; }
+        @keyframes playPulse { 0%,100%{ box-shadow: 0 10px 40px rgba(0,102,255,0.4); } 50%{ box-shadow: 0 10px 60px rgba(0,102,255,0.7); } }
+        .video-timeline { padding: 16px; }
+        .timeline-bar { height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; position: relative; margin-bottom: 12px; }
+        .timeline-progress { height: 100%; width: 45%; background: linear-gradient(90deg, var(--color-accent), #00d4ff); border-radius: 3px; }
+        .timeline-tracks { display: flex; flex-direction: column; gap: 6px; }
+        .timeline-track { height: 20px; background: rgba(255,255,255,0.03); border-radius: 4px; display: flex; gap: 4px; padding: 4px; }
+        .track-clip { height: 100%; border-radius: 3px; background: linear-gradient(90deg, rgba(0,102,255,0.3), rgba(0,102,255,0.15)); }
+        .track-clip:nth-child(1) { width: 30%; }
+        .track-clip:nth-child(2) { width: 20%; }
+        .track-clip:nth-child(3) { width: 40%; }
+        .timeline-track:nth-child(2) .track-clip { background: linear-gradient(90deg, rgba(0,212,255,0.3), rgba(0,212,255,0.15)); }
+
+        /* Shoots Visual */
+        .shoots-3d { position: absolute; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+        .photo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; width: 380px; transform: rotateY(-5deg) rotateX(3deg); transition: transform 0.5s ease; }
+        .service-mega:hover .photo-grid { transform: rotateY(-2deg) rotateX(1deg); }
+        .photo-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; overflow: hidden; transition: all 0.4s ease; }
+        .photo-card:hover { transform: translateY(-8px); border-color: rgba(0,102,255,0.4); box-shadow: 0 20px 40px rgba(0,102,255,0.15); }
+        .photo-card:nth-child(1) { grid-row: span 2; }
+        .photo-thumb { height: 100%; min-height: 120px; display: flex; align-items: center; justify-content: center; position: relative; }
+        .photo-card:nth-child(1) .photo-thumb { min-height: 260px; background: linear-gradient(135deg, rgba(0,102,255,0.12), rgba(0,212,255,0.08)); }
+        .photo-card:nth-child(2) .photo-thumb { background: linear-gradient(135deg, rgba(0,212,255,0.12), rgba(0,102,255,0.06)); }
+        .photo-card:nth-child(3) .photo-thumb { background: linear-gradient(135deg, rgba(0,102,255,0.08), rgba(0,212,255,0.12)); }
+        .photo-thumb svg { width: 40px; height: 40px; color: rgba(255,255,255,0.15); }
+        .photo-card:nth-child(1) .photo-thumb svg { width: 56px; height: 56px; }
+        .photo-label { padding: 12px 16px; font-size: 0.8rem; color: var(--color-text-secondary); font-family: 'Inter', sans-serif; border-top: 1px solid rgba(255,255,255,0.05); }
     </style>
 </head>
 <body data-page="services" class="services-page">
@@ -1347,6 +1451,426 @@
                                     <div class="color-swatch"></div>
                                     <div class="color-swatch"></div>
                                     <div class="color-swatch"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Automation -->
+            <div class="service-mega reverse" data-reveal>
+                <span class="service-mega-number">04</span>
+                <div class="service-mega-inner">
+                    <div class="service-mega-content">
+                        <span class="service-tag">Smart Automation</span>
+                        <h2 class="service-mega-title">
+                            Business<br><span>Automation</span>
+                        </h2>
+                        <p class="service-mega-desc">
+                            Supercharge your business with intelligent automation. From WhatsApp bots to CRM pipelines, we build systems that work 24/7 so you can focus on growth.
+                        </p>
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">WhatsApp Automation</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Chatbots & AI Support</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">CRM Integration</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Lead Management</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Email Automation</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Sales Funnel Automation</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Payment & Order Automation</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">AI Customer Support</span>
+                            </div>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary btn-magnetic">
+                            <span class="btn-text">Automate Your Business</span>
+                            <div class="btn-glow"></div>
+                        </a>
+                    </div>
+                    <div class="service-mega-visual">
+                        <div class="visual-wrapper">
+                            <div class="automation-3d">
+                                <div class="workflow-container">
+                                    <div class="workflow-pulse"></div>
+                                    <div class="workflow-pulse"></div>
+                                    <div class="workflow-node node-1">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                    </div>
+                                    <div class="workflow-node node-2">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                    </div>
+                                    <div class="workflow-node node-3">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                                    </div>
+                                    <div class="workflow-node node-4">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                    </div>
+                                    <div class="workflow-node node-center">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                                    </div>
+                                    <div class="workflow-line h left"></div>
+                                    <div class="workflow-line h right"></div>
+                                    <div class="workflow-line v top"></div>
+                                    <div class="workflow-line v bottom"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marketing & Ads -->
+            <div class="service-mega" data-reveal>
+                <span class="service-mega-number">05</span>
+                <div class="service-mega-inner">
+                    <div class="service-mega-content">
+                        <span class="service-tag">Digital Marketing</span>
+                        <h2 class="service-mega-title">
+                            Marketing<br><span>& Ads</span>
+                        </h2>
+                        <p class="service-mega-desc">
+                            Drive real results with data-driven marketing. We create high-converting ad campaigns across Meta and Google platforms that maximize your ROI and accelerate growth.
+                        </p>
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Meta Ads (FB & IG)</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Google Ads</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Lead Generation</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Growth Strategy</span>
+                            </div>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary btn-magnetic">
+                            <span class="btn-text">Boost Your Marketing</span>
+                            <div class="btn-glow"></div>
+                        </a>
+                    </div>
+                    <div class="service-mega-visual">
+                        <div class="visual-wrapper">
+                            <div class="analytics-3d">
+                                <div class="analytics-header">
+                                    <span>📊 Campaign Dashboard</span>
+                                    <span style="color: #27ca40; font-size: 0.75rem;">● Live</span>
+                                </div>
+                                <div class="analytics-body">
+                                    <div class="analytics-stats">
+                                        <div class="analytics-stat">
+                                            <div class="val">248K</div>
+                                            <div class="lbl">Reach</div>
+                                        </div>
+                                        <div class="analytics-stat">
+                                            <div class="val">4.2K</div>
+                                            <div class="lbl">Leads</div>
+                                        </div>
+                                        <div class="analytics-stat">
+                                            <div class="val">32.6K</div>
+                                            <div class="lbl">Clicks</div>
+                                        </div>
+                                    </div>
+                                    <div class="analytics-chart">
+                                        <div class="chart-bar"></div>
+                                        <div class="chart-bar"></div>
+                                        <div class="chart-bar"></div>
+                                        <div class="chart-bar"></div>
+                                        <div class="chart-bar"></div>
+                                        <div class="chart-bar"></div>
+                                        <div class="chart-bar"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media & Content -->
+            <div class="service-mega reverse" data-reveal>
+                <span class="service-mega-number">06</span>
+                <div class="service-mega-inner">
+                    <div class="service-mega-content">
+                        <span class="service-tag">Social Growth</span>
+                        <h2 class="service-mega-title">
+                            Social Media<br><span>& Content</span>
+                        </h2>
+                        <p class="service-mega-desc">
+                            Build a powerful social presence that attracts and engages your audience. From strategy to execution, we handle your Instagram, create stunning reels, and grow your brand organically.
+                        </p>
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Instagram Handling</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Content Planning & Posting</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Reels Creation & Editing</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Brand Growth Strategy</span>
+                            </div>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary btn-magnetic">
+                            <span class="btn-text">Grow Your Social</span>
+                            <div class="btn-glow"></div>
+                        </a>
+                    </div>
+                    <div class="service-mega-visual">
+                        <div class="visual-wrapper">
+                            <div class="social-3d">
+                                <div class="social-notch"></div>
+                                <div class="social-content">
+                                    <div class="social-profile">
+                                        <div class="social-avatar">U</div>
+                                        <div>
+                                            <div class="social-name">uxi.tech</div>
+                                            <div class="social-handle">@uxitech.in</div>
+                                        </div>
+                                    </div>
+                                    <div class="social-stats-row">
+                                        <div class="social-stat-item">
+                                            <div class="num">1,466</div>
+                                            <div class="txt">Posts</div>
+                                        </div>
+                                        <div class="social-stat-item">
+                                            <div class="num">23.7K</div>
+                                            <div class="txt">Followers</div>
+                                        </div>
+                                        <div class="social-stat-item">
+                                            <div class="num">311</div>
+                                            <div class="txt">Following</div>
+                                        </div>
+                                    </div>
+                                    <div class="social-grid">
+                                        <div class="social-grid-item"></div>
+                                        <div class="social-grid-item"></div>
+                                        <div class="social-grid-item"></div>
+                                        <div class="social-grid-item"></div>
+                                        <div class="social-grid-item"></div>
+                                        <div class="social-grid-item"></div>
+                                        <div class="social-grid-item"></div>
+                                        <div class="social-grid-item"></div>
+                                        <div class="social-grid-item"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Production -->
+            <div class="service-mega" data-reveal>
+                <span class="service-mega-number">07</span>
+                <div class="service-mega-inner">
+                    <div class="service-mega-content">
+                        <span class="service-tag">Creative Studio</span>
+                        <h2 class="service-mega-title">
+                            Video<br><span>Production</span>
+                        </h2>
+                        <p class="service-mega-desc">
+                            Bring your brand to life with stunning video content. From AI-generated videos to cinematic brand films, we create visuals that capture attention and tell your story.
+                        </p>
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">AI Generated Videos</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Business Promo Videos</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Product Ads</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Cinematic Brand Videos</span>
+                            </div>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary btn-magnetic">
+                            <span class="btn-text">Create Your Video</span>
+                            <div class="btn-glow"></div>
+                        </a>
+                    </div>
+                    <div class="service-mega-visual">
+                        <div class="visual-wrapper">
+                            <div class="video-3d">
+                                <div class="video-toolbar">
+                                    <div class="dots"><span></span><span></span><span></span></div>
+                                </div>
+                                <div class="video-preview">
+                                    <div class="play-btn">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+                                    </div>
+                                </div>
+                                <div class="video-timeline">
+                                    <div class="timeline-bar"><div class="timeline-progress"></div></div>
+                                    <div class="timeline-tracks">
+                                        <div class="timeline-track">
+                                            <div class="track-clip"></div>
+                                            <div class="track-clip"></div>
+                                            <div class="track-clip"></div>
+                                        </div>
+                                        <div class="timeline-track">
+                                            <div class="track-clip"></div>
+                                            <div class="track-clip"></div>
+                                            <div class="track-clip"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shoots & Production -->
+            <div class="service-mega reverse" data-reveal>
+                <span class="service-mega-number">08</span>
+                <div class="service-mega-inner">
+                    <div class="service-mega-content">
+                        <span class="service-tag">Photography</span>
+                        <h2 class="service-mega-title">
+                            Shoots &<br><span>Production</span>
+                        </h2>
+                        <p class="service-mega-desc">
+                            Professional photography and production services that elevate your brand visuals. From car deliveries to wedding events, we capture every moment with cinematic precision.
+                        </p>
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Car Delivery Shoots</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Food Promotions</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Clothing Brand Shoots</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Wedding Shoots</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Birthday & Event Shoots</span>
+                            </div>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary btn-magnetic">
+                            <span class="btn-text">Book a Shoot</span>
+                            <div class="btn-glow"></div>
+                        </a>
+                    </div>
+                    <div class="service-mega-visual">
+                        <div class="visual-wrapper">
+                            <div class="shoots-3d">
+                                <div class="photo-grid">
+                                    <div class="photo-card">
+                                        <div class="photo-thumb">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                                        </div>
+                                        <div class="photo-label">Car Delivery</div>
+                                    </div>
+                                    <div class="photo-card">
+                                        <div class="photo-thumb">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                                        </div>
+                                        <div class="photo-label">Food Promo</div>
+                                    </div>
+                                    <div class="photo-card">
+                                        <div class="photo-thumb">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                        </div>
+                                        <div class="photo-label">Wedding</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
