@@ -1,0 +1,122 @@
+[
+  {
+    "id": "kkfc-foods",
+    "title": "KARTIKEYA KKFC FOODS",
+    "category": "business",
+    "subCategory": "Business • Food",
+    "desc": "Professional food business website showcasing quality products and services.",
+    "year": "2026",
+    "type": "Website",
+    "url": "https://kartikeyakkfcfoods.in/",
+    "gradient": "gradient-4",
+    "shape": "sphere"
+  },
+  {
+    "id": "sai-xerox",
+    "title": "SRI SAI STUDENT XEROX",
+    "category": "business",
+    "subCategory": "Business • Services",
+    "desc": "Professional xerox and printing services website for students with easy booking system.",
+    "year": "2026",
+    "type": "Website",
+    "url": "https://srisaistudentxerox.in",
+    "gradient": "gradient-5",
+    "shape": "cube"
+  },
+  {
+    "id": "wasshot",
+    "title": "WASSHOT",
+    "category": "web",
+    "subCategory": "Creative Brand • Web Design",
+    "desc": "A bold creative brand website with immersive storytelling and cutting-edge animations.",
+    "year": "2025",
+    "type": "Website",
+    "url": "https://wasshot.in",
+    "gradient": "gradient-1",
+    "shape": "cube"
+  },
+  {
+    "id": "bhuvika-studio",
+    "title": "BHUVIKA STUDIO",
+    "category": "business",
+    "subCategory": "E-Commerce • Fashion",
+    "desc": "Premium fashion e-commerce store with curated collections of sarees, lehengas & western wear.",
+    "year": "2026",
+    "type": "Website",
+    "url": "https://bhuvikastudio.com",
+    "gradient": "gradient-2",
+    "shape": "sphere"
+  },
+  {
+    "id": "flixios",
+    "title": "FLIXIOS",
+    "category": "entertainment",
+    "subCategory": "Entertainment • Platform",
+    "desc": "Media & entertainment platform with dynamic content presentation.",
+    "year": "2025",
+    "type": "Platform",
+    "url": "https://flixios.in",
+    "gradient": "gradient-3",
+    "shape": "ring"
+  },
+  {
+    "id": "habit-tracker-2026",
+    "title": "HABIT TRACKER 2026",
+    "category": "web",
+    "subCategory": "Project • Web App",
+    "desc": "A modern habit tracking web app to help users build and maintain positive routines. Built for 2026.",
+    "year": "2026",
+    "type": "Website",
+    "url": "https://habitcrew2k26.netlify.app",
+    "gradient": "gradient-4",
+    "shape": "cube"
+  },
+  {
+    "id": "learn-to-pronounce",
+    "title": "LEARN TO PRONOUNCE",
+    "category": "education",
+    "subCategory": "Education • Web App",
+    "desc": "An interactive education platform helping users master pronunciation with engaging learning tools.",
+    "year": "2026",
+    "type": "Website",
+    "url": "https://learnto-pronoun.netlify.app",
+    "gradient": "gradient-5",
+    "shape": "sphere"
+  },
+  {
+    "id": "freshflow-exports",
+    "title": "FRESHFLOW EXPORTS",
+    "category": "business",
+    "subCategory": "Export • Business",
+    "desc": "Professional export business website showcasing premium products and international trade solutions.",
+    "year": "2026",
+    "type": "Website",
+    "url": "https://freshflow.co.in",
+    "gradient": "gradient-6",
+    "shape": "ring"
+  },
+  {
+    "id": "notemitra",
+    "title": "NOTEMITRA",
+    "category": "education",
+    "subCategory": "Education • Web App",
+    "desc": "Smart note-taking platform designed for students with intuitive organization and collaboration features.",
+    "year": "2026",
+    "type": "Website",
+    "url": "https://notemitra-mic.vercel.app",
+    "gradient": "gradient-7",
+    "shape": "cube"
+  },
+  {
+    "id": "akfashionhub",
+    "title": "AKFASHIONHUB",
+    "category": "business",
+    "subCategory": "Fashion • E-commerce",
+    "desc": "Premium fashion e-commerce platform with modern design and seamless shopping experience.",
+    "year": "2026",
+    "type": "Website",
+    "url": "https://akfastionhub.com",
+    "gradient": "gradient-8",
+    "shape": "sphere"
+  }
+]

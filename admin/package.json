@@ -1,0 +1,12 @@
+{
+  "name": "uxi-admin",
+  "version": "1.0.0",
+  "description": "Admin panel for UXI Tech Website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

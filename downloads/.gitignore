@@ -1,0 +1,2 @@
+# APK binaries are built locally — do not commit large files
+*.apk

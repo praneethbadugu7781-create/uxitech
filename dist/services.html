@@ -1,0 +1,2036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="UXI Services — Web Design, UI/UX Design, and Branding solutions for modern businesses.">
+    <title>Services — UXI</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/3d-effects.css">
+    <style>
+        /* Services Page Premium Styles */
+        .services-page {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Hero Section */
+        .services-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 100px;
+            overflow: hidden;
+        }
+
+        .services-hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+        }
+
+        .services-hero-bg::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 102, 255, 0.15) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        .services-hero-bg::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            animation: pulse 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        .services-hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .services-hero-text {
+            max-width: 600px;
+        }
+
+        .services-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .eyebrow-line {
+            width: 60px;
+            height: 1px;
+            background: var(--color-accent);
+        }
+
+        .eyebrow-text {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--color-accent);
+        }
+
+        .services-hero-title {
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            font-weight: 700;
+            line-height: 0.95;
+            margin-bottom: 32px;
+            letter-spacing: -0.03em;
+        }
+
+        .title-line {
+            display: block;
+        }
+
+        .title-line.gradient {
+            background: linear-gradient(135deg, #fff 0%, var(--color-accent) 50%, #00d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .services-hero-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.25rem;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-bottom: 48px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 48px;
+        }
+
+        .stat-item {
+            text-align: left;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-text);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-number span {
+            color: var(--color-accent);
+        }
+
+        .stat-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Hero Visual */
+        .services-hero-visual {
+            position: relative;
+            height: 600px;
+        }
+
+        .floating-services {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .service-float-card {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 32px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-float-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(0, 102, 255, 0.5);
+            box-shadow: 0 30px 60px rgba(0, 102, 255, 0.2);
+        }
+
+        .service-float-card.card-1 {
+            top: 0;
+            left: 0;
+            width: 280px;
+            animation: float1 6s ease-in-out infinite;
+        }
+
+        .service-float-card.card-2 {
+            top: 40%;
+            right: 0;
+            width: 260px;
+            animation: float2 7s ease-in-out infinite;
+        }
+
+        .service-float-card.card-3 {
+            bottom: 0;
+            left: 15%;
+            width: 300px;
+            animation: float3 8s ease-in-out infinite;
+        }
+
+        @keyframes float1 {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(-2deg); }
+        }
+
+        @keyframes float3 {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(1deg); }
+        }
+
+        .float-card-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--color-accent), #00d4ff);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .float-card-icon svg {
+            width: 32px;
+            height: 32px;
+            color: white;
+        }
+
+        .float-card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .float-card-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Services Showcase Section */
+        .services-showcase {
+            padding: 160px 0;
+            position: relative;
+        }
+
+        .showcase-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 120px;
+        }
+
+        .showcase-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 24px;
+            background: rgba(0, 102, 255, 0.1);
+            border: 1px solid rgba(0, 102, 255, 0.2);
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            margin-bottom: 32px;
+        }
+
+        .showcase-title {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        /* Service Mega Cards */
+        .service-mega {
+            margin-bottom: 200px;
+            position: relative;
+        }
+
+        .service-mega:last-child {
+            margin-bottom: 0;
+        }
+
+        .service-mega-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .service-mega.reverse .service-mega-inner {
+            direction: rtl;
+        }
+
+        .service-mega.reverse .service-mega-inner > * {
+            direction: ltr;
+        }
+
+        /* Service Number */
+        .service-mega-number {
+            position: absolute;
+            top: -100px;
+            left: 0;
+            font-size: clamp(10rem, 20vw, 20rem);
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.02);
+            line-height: 1;
+            letter-spacing: -0.05em;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .service-mega.reverse .service-mega-number {
+            left: auto;
+            right: 0;
+        }
+
+        /* Service Content */
+        .service-mega-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-tag {
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.2), rgba(0, 212, 255, 0.1));
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-accent);
+            margin-bottom: 24px;
+        }
+
+        .service-mega-title {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+        }
+
+        .service-mega-title span {
+            display: block;
+            background: linear-gradient(135deg, var(--color-accent), #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .service-mega-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.125rem;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+            margin-bottom: 40px;
+            max-width: 500px;
+        }
+
+        /* Feature List */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 48px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            background: rgba(0, 102, 255, 0.1);
+            border-color: rgba(0, 102, 255, 0.3);
+            transform: translateX(8px);
+        }
+
+        .feature-check {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, var(--color-accent), #00d4ff);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature-check svg {
+            width: 14px;
+            height: 14px;
+            color: white;
+        }
+
+        .feature-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9375rem;
+            font-weight: 500;
+        }
+
+        /* Service Visual */
+        .service-mega-visual {
+            position: relative;
+            height: 500px;
+            perspective: 1000px;
+        }
+
+        .visual-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+        }
+
+        /* Browser Mockup */
+        .browser-3d {
+            position: absolute;
+            width: 100%;
+            max-width: 480px;
+            background: linear-gradient(180deg, rgba(30, 30, 40, 0.9) 0%, rgba(20, 20, 30, 0.95) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 
+                0 50px 100px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+            transform: rotateY(-10deg) rotateX(5deg);
+            transition: transform 0.5s ease;
+        }
+
+        .service-mega:hover .browser-3d {
+            transform: rotateY(-5deg) rotateX(2deg) translateY(-10px);
+        }
+
+        .browser-3d-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .browser-3d-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .browser-3d-dots span {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .browser-3d-dots span:nth-child(1) { background: #ff5f56; }
+        .browser-3d-dots span:nth-child(2) { background: #ffbd2e; }
+        .browser-3d-dots span:nth-child(3) { background: #27ca40; }
+
+        .browser-3d-content {
+            padding: 32px;
+            min-height: 300px;
+        }
+
+        .browser-skeleton {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .skeleton-header {
+            height: 40px;
+            background: linear-gradient(90deg, rgba(0, 102, 255, 0.3) 0%, rgba(0, 102, 255, 0.1) 100%);
+            border-radius: 8px;
+            width: 60%;
+        }
+
+        .skeleton-line {
+            height: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+        }
+
+        .skeleton-line:nth-child(2) { width: 100%; }
+        .skeleton-line:nth-child(3) { width: 85%; }
+        .skeleton-line:nth-child(4) { width: 70%; }
+
+        .skeleton-blocks {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .skeleton-block {
+            height: 80px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+        }
+
+        /* Mobile Mockup */
+        .mobile-3d {
+            position: absolute;
+            width: 260px;
+            height: 520px;
+            background: linear-gradient(180deg, rgba(30, 30, 40, 0.95) 0%, rgba(20, 20, 30, 0.98) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: 
+                0 50px 100px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+            transform: rotateY(10deg) rotateX(-5deg);
+            transition: transform 0.5s ease;
+            left: 50%;
+            top: 50%;
+            margin-left: -130px;
+            margin-top: -260px;
+        }
+
+        .service-mega:hover .mobile-3d {
+            transform: rotateY(5deg) rotateX(-2deg) translateY(-10px);
+        }
+
+        .mobile-3d-notch {
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 28px;
+            background: #000;
+            border-radius: 20px;
+        }
+
+        .mobile-3d-content {
+            padding: 60px 20px 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-app-header {
+            height: 80px;
+            background: linear-gradient(135deg, var(--color-accent), #00d4ff);
+            border-radius: 16px;
+            margin-bottom: 16px;
+        }
+
+        .mobile-app-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .mobile-app-card {
+            height: 60px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+        }
+
+        .mobile-app-nav {
+            display: flex;
+            justify-content: space-around;
+            padding: 16px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: auto;
+        }
+
+        .mobile-app-nav span {
+            width: 24px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+        }
+
+        /* Brand Visual */
+        .brand-3d {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .brand-cube {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotateCube 20s linear infinite;
+        }
+
+        @keyframes rotateCube {
+            0% { transform: rotateX(-20deg) rotateY(0deg); }
+            100% { transform: rotateX(-20deg) rotateY(360deg); }
+        }
+
+        .cube-face {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.8), rgba(0, 212, 255, 0.6));
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .cube-face.front { transform: translateZ(100px); }
+        .cube-face.back { transform: rotateY(180deg) translateZ(100px); }
+        .cube-face.right { transform: rotateY(90deg) translateZ(100px); }
+        .cube-face.left { transform: rotateY(-90deg) translateZ(100px); }
+        .cube-face.top { transform: rotateX(90deg) translateZ(100px); }
+        .cube-face.bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+        .brand-colors {
+            position: absolute;
+            bottom: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+
+        .color-swatch {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: floatSwatch 4s ease-in-out infinite;
+        }
+
+        .color-swatch:nth-child(1) { 
+            background: var(--color-accent); 
+            animation-delay: 0s;
+        }
+        .color-swatch:nth-child(2) { 
+            background: #00d4ff; 
+            animation-delay: 0.3s;
+        }
+        .color-swatch:nth-child(3) { 
+            background: #fff; 
+            animation-delay: 0.6s;
+        }
+        .color-swatch:nth-child(4) { 
+            background: linear-gradient(135deg, var(--color-accent), #00d4ff); 
+            animation-delay: 0.9s;
+        }
+
+        @keyframes floatSwatch {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Process Section */
+        .process-mega {
+            padding: 160px 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 102, 255, 0.03) 50%, transparent 100%);
+            position: relative;
+        }
+
+        .process-mega-header {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        .process-mega-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .process-mega-title span {
+            background: linear-gradient(135deg, var(--color-accent), #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Process Steps */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            position: relative;
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 80px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(0, 102, 255, 0.5) 20%, 
+                rgba(0, 102, 255, 0.5) 80%, 
+                transparent
+            );
+        }
+
+        .process-step-card {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-icon-wrap {
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 32px;
+            position: relative;
+        }
+
+        .step-icon-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.1), rgba(0, 212, 255, 0.05));
+            border-radius: 50%;
+            animation: stepPulse 4s ease-in-out infinite;
+        }
+
+        .process-step-card:nth-child(2) .step-icon-bg { animation-delay: 0.5s; }
+        .process-step-card:nth-child(3) .step-icon-bg { animation-delay: 1s; }
+        .process-step-card:nth-child(4) .step-icon-bg { animation-delay: 1.5s; }
+
+        @keyframes stepPulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .step-icon-inner {
+            position: absolute;
+            inset: 20px;
+            background: linear-gradient(135deg, var(--color-accent), #00d4ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .step-icon-inner svg {
+            width: 48px;
+            height: 48px;
+            color: white;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            background: var(--color-bg);
+            border: 2px solid var(--color-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--color-accent);
+        }
+
+        .step-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .step-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9375rem;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            max-width: 250px;
+            margin: 0 auto;
+        }
+
+        /* CTA Section */
+        .services-cta {
+            padding: 160px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services-cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(0, 102, 255, 0.15) 0%, transparent 70%);
+        }
+
+        .cta-mega-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-mega-title {
+            font-size: clamp(3rem, 7vw, 6rem);
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            margin-bottom: 32px;
+        }
+
+        .cta-mega-title span {
+            display: block;
+            background: linear-gradient(135deg, #fff 0%, var(--color-accent) 50%, #00d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-mega-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.25rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 48px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .services-hero-content {
+                grid-template-columns: 1fr;
+                gap: 60px;
+                padding: 0 16px;
+            }
+
+            .services-hero-visual {
+                height: 400px;
+            }
+
+            .service-mega-inner {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .service-mega.reverse .service-mega-inner {
+                direction: ltr;
+            }
+
+            .service-mega-visual {
+                height: 350px;
+            }
+
+            .process-steps {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 48px;
+            }
+
+            .process-steps::before {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .services-hero {
+                padding: 80px 16px 60px;
+                overflow-x: hidden;
+            }
+            
+            .services-hero-content {
+                padding: 0;
+            }
+            
+            .services-hero-text {
+                padding: 0;
+            }
+            
+            .services-hero-title {
+                font-size: 2.5rem;
+                word-break: break-word;
+            }
+
+            .hero-stats {
+                flex-wrap: wrap;
+                gap: 32px;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .service-float-card {
+                position: relative;
+                width: 100% !important;
+                margin-bottom: 20px;
+                animation: none !important;
+            }
+
+            .service-float-card.card-1,
+            .service-float-card.card-2,
+            .service-float-card.card-3 {
+                position: relative;
+                top: auto;
+                left: auto;
+                right: auto;
+                bottom: auto;
+            }
+
+            .floating-services {
+                display: flex;
+                flex-direction: column;
+                height: auto;
+            }
+
+            .services-hero-visual {
+                height: auto;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-mega-number {
+                font-size: 8rem;
+                top: -50px;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .step-icon-wrap {
+                width: 120px;
+                height: 120px;
+            }
+
+            .browser-3d,
+            .mobile-3d {
+                transform: none !important;
+                position: relative;
+                left: auto;
+                top: auto;
+                margin: 0 auto;
+            }
+
+            .brand-cube {
+                width: 150px;
+                height: 150px;
+            }
+
+            .cube-face {
+                width: 150px;
+                height: 150px;
+                font-size: 3rem;
+            }
+
+            .cube-face.front { transform: translateZ(75px); }
+            .cube-face.back { transform: rotateY(180deg) translateZ(75px); }
+            .cube-face.right { transform: rotateY(90deg) translateZ(75px); }
+            .cube-face.left { transform: rotateY(-90deg) translateZ(75px); }
+            .cube-face.top { transform: rotateX(90deg) translateZ(75px); }
+            .cube-face.bottom { transform: rotateX(-90deg) translateZ(75px); }
+        }
+
+        /* === NEW SERVICE VISUALS === */
+
+        /* Automation Workflow Visual */
+        .automation-3d { position: absolute; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+        .workflow-container { position: relative; width: 400px; height: 400px; }
+        .workflow-node { position: absolute; width: 90px; height: 90px; background: rgba(255,255,255,0.03); backdrop-filter: blur(20px); border: 1px solid rgba(0,102,255,0.3); border-radius: 20px; display: flex; align-items: center; justify-content: center; transition: all 0.4s ease; }
+        .workflow-node:hover { border-color: rgba(0,102,255,0.8); box-shadow: 0 0 30px rgba(0,102,255,0.3); transform: scale(1.1); }
+        .workflow-node svg { width: 36px; height: 36px; color: var(--color-accent); }
+        .workflow-node.node-1 { top: 0; left: 50%; transform: translateX(-50%); animation: nodeFloat 5s ease-in-out infinite; }
+        .workflow-node.node-2 { top: 35%; right: 0; animation: nodeFloat 5s ease-in-out infinite 0.5s; }
+        .workflow-node.node-3 { bottom: 0; left: 50%; transform: translateX(-50%); animation: nodeFloat 5s ease-in-out infinite 1s; }
+        .workflow-node.node-4 { top: 35%; left: 0; animation: nodeFloat 5s ease-in-out infinite 1.5s; }
+        .workflow-node.node-center { top: 50%; left: 50%; transform: translate(-50%,-50%); width: 110px; height: 110px; background: linear-gradient(135deg, rgba(0,102,255,0.2), rgba(0,212,255,0.1)); border-color: rgba(0,212,255,0.5); border-radius: 50%; }
+        .workflow-node.node-center svg { width: 44px; height: 44px; color: #00d4ff; }
+        @keyframes nodeFloat { 0%,100%{ filter: brightness(1); } 50%{ filter: brightness(1.3); } }
+        .workflow-line { position: absolute; background: linear-gradient(90deg, rgba(0,102,255,0.1), rgba(0,102,255,0.4), rgba(0,102,255,0.1)); z-index: -1; }
+        .workflow-line.h { height: 2px; width: 80px; top: 50%; }
+        .workflow-line.h.left { left: 90px; }
+        .workflow-line.h.right { right: 90px; }
+        .workflow-line.v { width: 2px; height: 80px; left: 50%; }
+        .workflow-line.v.top { top: 90px; }
+        .workflow-line.v.bottom { bottom: 90px; }
+        .workflow-pulse { position: absolute; top: 50%; left: 50%; width: 300px; height: 300px; transform: translate(-50%,-50%); border-radius: 50%; border: 1px solid rgba(0,102,255,0.1); animation: wfPulse 4s ease-in-out infinite; z-index: -2; }
+        .workflow-pulse:nth-child(2) { width: 380px; height: 380px; animation-delay: 1s; }
+        @keyframes wfPulse { 0%,100%{ opacity: 0.3; transform: translate(-50%,-50%) scale(1); } 50%{ opacity: 0.7; transform: translate(-50%,-50%) scale(1.05); } }
+
+        /* Marketing Analytics Visual */
+        .analytics-3d { position: absolute; width: 100%; max-width: 420px; background: linear-gradient(180deg, rgba(30,30,40,0.9), rgba(20,20,30,0.95)); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; overflow: hidden; box-shadow: 0 50px 100px rgba(0,0,0,0.5); transform: rotateY(-8deg) rotateX(4deg); transition: transform 0.5s ease; left: 50%; top: 50%; margin-left: -210px; margin-top: -180px; }
+        .service-mega:hover .analytics-3d { transform: rotateY(-3deg) rotateX(1deg) translateY(-10px); }
+        .analytics-header { padding: 16px 24px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: space-between; }
+        .analytics-header span { font-size: 0.875rem; font-weight: 600; color: var(--color-text-secondary); }
+        .analytics-body { padding: 24px; }
+        .analytics-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 24px; }
+        .analytics-stat { text-align: center; padding: 12px; background: rgba(255,255,255,0.02); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
+        .analytics-stat .val { font-size: 1.5rem; font-weight: 700; color: var(--color-accent); }
+        .analytics-stat .lbl { font-size: 0.7rem; color: var(--color-text-secondary); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .analytics-chart { display: flex; align-items: flex-end; gap: 8px; height: 100px; padding: 16px 0; }
+        .chart-bar { flex: 1; background: linear-gradient(to top, rgba(0,102,255,0.3), rgba(0,212,255,0.6)); border-radius: 6px 6px 0 0; animation: barGrow 2s ease-out forwards; transform-origin: bottom; }
+        @keyframes barGrow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+        .chart-bar:nth-child(1) { height: 60%; animation-delay: 0.1s; }
+        .chart-bar:nth-child(2) { height: 85%; animation-delay: 0.2s; }
+        .chart-bar:nth-child(3) { height: 45%; animation-delay: 0.3s; }
+        .chart-bar:nth-child(4) { height: 95%; animation-delay: 0.4s; }
+        .chart-bar:nth-child(5) { height: 70%; animation-delay: 0.5s; }
+        .chart-bar:nth-child(6) { height: 55%; animation-delay: 0.6s; }
+        .chart-bar:nth-child(7) { height: 80%; animation-delay: 0.7s; }
+
+        /* Social Media Visual */
+        .social-3d { position: absolute; width: 280px; background: linear-gradient(180deg, rgba(30,30,40,0.95), rgba(20,20,30,0.98)); border: 1px solid rgba(255,255,255,0.1); border-radius: 36px; overflow: hidden; box-shadow: 0 50px 100px rgba(0,0,0,0.5); left: 50%; top: 50%; margin-left: -140px; margin-top: -250px; transform: rotateY(8deg) rotateX(-4deg); transition: transform 0.5s ease; }
+        .service-mega:hover .social-3d { transform: rotateY(3deg) rotateX(-1deg) translateY(-10px); }
+        .social-notch { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 90px; height: 26px; background: #000; border-radius: 20px; z-index: 5; }
+        .social-content { padding: 50px 16px 20px; }
+        .social-profile { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .social-avatar { width: 44px; height: 44px; background: linear-gradient(135deg, var(--color-accent), #00d4ff); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem; }
+        .social-name { font-size: 0.9rem; font-weight: 600; }
+        .social-handle { font-size: 0.75rem; color: var(--color-text-secondary); }
+        .social-stats-row { display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); margin-bottom: 16px; }
+        .social-stat-item { text-align: center; }
+        .social-stat-item .num { font-size: 1rem; font-weight: 700; }
+        .social-stat-item .txt { font-size: 0.65rem; color: var(--color-text-secondary); }
+        .social-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3px; border-radius: 8px; overflow: hidden; }
+        .social-grid-item { aspect-ratio: 1; background: rgba(255,255,255,0.05); }
+        .social-grid-item:nth-child(odd) { background: linear-gradient(135deg, rgba(0,102,255,0.15), rgba(0,212,255,0.1)); }
+        .social-grid-item:nth-child(even) { background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(0,102,255,0.08)); }
+
+        /* Video Production Visual */
+        .video-3d { position: absolute; width: 100%; max-width: 460px; background: linear-gradient(180deg, rgba(30,30,40,0.9), rgba(20,20,30,0.95)); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; overflow: hidden; box-shadow: 0 50px 100px rgba(0,0,0,0.5); transform: rotateY(-6deg) rotateX(3deg); transition: transform 0.5s ease; }
+        .service-mega:hover .video-3d { transform: rotateY(-2deg) rotateX(1deg) translateY(-10px); }
+        .video-toolbar { display: flex; align-items: center; gap: 8px; padding: 12px 16px; background: rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .video-toolbar .dots { display: flex; gap: 6px; }
+        .video-toolbar .dots span { width: 10px; height: 10px; border-radius: 50%; }
+        .video-toolbar .dots span:nth-child(1) { background: #ff5f56; }
+        .video-toolbar .dots span:nth-child(2) { background: #ffbd2e; }
+        .video-toolbar .dots span:nth-child(3) { background: #27ca40; }
+        .video-preview { height: 200px; background: linear-gradient(135deg, rgba(0,102,255,0.1), rgba(0,0,0,0.3)); display: flex; align-items: center; justify-content: center; position: relative; }
+        .play-btn { width: 64px; height: 64px; background: linear-gradient(135deg, var(--color-accent), #00d4ff); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 10px 40px rgba(0,102,255,0.4); animation: playPulse 2s ease-in-out infinite; }
+        .play-btn svg { width: 28px; height: 28px; color: white; margin-left: 4px; }
+        @keyframes playPulse { 0%,100%{ box-shadow: 0 10px 40px rgba(0,102,255,0.4); } 50%{ box-shadow: 0 10px 60px rgba(0,102,255,0.7); } }
+        .video-timeline { padding: 16px; }
+        .timeline-bar { height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; position: relative; margin-bottom: 12px; }
+        .timeline-progress { height: 100%; width: 45%; background: linear-gradient(90deg, var(--color-accent), #00d4ff); border-radius: 3px; }
+        .timeline-tracks { display: flex; flex-direction: column; gap: 6px; }
+        .timeline-track { height: 20px; background: rgba(255,255,255,0.03); border-radius: 4px; display: flex; gap: 4px; padding: 4px; }
+        .track-clip { height: 100%; border-radius: 3px; background: linear-gradient(90deg, rgba(0,102,255,0.3), rgba(0,102,255,0.15)); }
+        .track-clip:nth-child(1) { width: 30%; }
+        .track-clip:nth-child(2) { width: 20%; }
+        .track-clip:nth-child(3) { width: 40%; }
+        .timeline-track:nth-child(2) .track-clip { background: linear-gradient(90deg, rgba(0,212,255,0.3), rgba(0,212,255,0.15)); }
+
+        /* Shoots Visual */
+        .shoots-3d { position: absolute; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+        .photo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; width: 380px; transform: rotateY(-5deg) rotateX(3deg); transition: transform 0.5s ease; }
+        .service-mega:hover .photo-grid { transform: rotateY(-2deg) rotateX(1deg); }
+        .photo-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; overflow: hidden; transition: all 0.4s ease; }
+        .photo-card:hover { transform: translateY(-8px); border-color: rgba(0,102,255,0.4); box-shadow: 0 20px 40px rgba(0,102,255,0.15); }
+        .photo-card:nth-child(1) { grid-row: span 2; }
+        .photo-thumb { height: 100%; min-height: 120px; display: flex; align-items: center; justify-content: center; position: relative; }
+        .photo-card:nth-child(1) .photo-thumb { min-height: 260px; background: linear-gradient(135deg, rgba(0,102,255,0.12), rgba(0,212,255,0.08)); }
+        .photo-card:nth-child(2) .photo-thumb { background: linear-gradient(135deg, rgba(0,212,255,0.12), rgba(0,102,255,0.06)); }
+        .photo-card:nth-child(3) .photo-thumb { background: linear-gradient(135deg, rgba(0,102,255,0.08), rgba(0,212,255,0.12)); }
+        .photo-thumb svg { width: 40px; height: 40px; color: rgba(255,255,255,0.15); }
+        .photo-card:nth-child(1) .photo-thumb svg { width: 56px; height: 56px; }
+        .photo-label { padding: 12px 16px; font-size: 0.8rem; color: var(--color-text-secondary); font-family: 'Inter', sans-serif; border-top: 1px solid rgba(255,255,255,0.05); }
+    </style>
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8238210974025135"
+         crossorigin="anonymous"></script>
+</head>
+<body data-page="services" class="services-page">
+    <canvas id="webgl-canvas"></canvas>
+    <div class="cursor-glow" id="cursorGlow"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <div class="page-transition">
+        <div class="transition-logo">UXI</div>
+        <div class="transition-bars">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-text">UXI</span>
+                <span class="logo-dot"></span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="services.html" class="active">Services</a>
+                <a href="work.html">Work</a>
+                <a href="about.html">About</a>
+                <a href="contact.html" class="nav-cta">Start a Project</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-bg"></div>
+        <div class="mobile-menu-content">
+            <a href="index.html">Home</a>
+            <a href="services.html" class="active">Services</a>
+            <a href="work.html">Work</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="services-hero">
+        <div class="services-hero-bg"></div>
+        <div class="container">
+            <div class="services-hero-content">
+                <div class="services-hero-text" data-reveal>
+                    <div class="services-eyebrow">
+                        <span class="eyebrow-line"></span>
+                        <span class="eyebrow-text">Our Services</span>
+                    </div>
+                    <h1 class="services-hero-title">
+                        <span class="title-line">We craft</span>
+                        <span class="title-line gradient">digital magic</span>
+                    </h1>
+                    <p class="services-hero-desc">
+                        Premium digital experiences that transform brands and captivate audiences. From stunning websites to intuitive interfaces—we bring your vision to life.
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">50<span>+</span></div>
+                            <div class="stat-label">Projects Done</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100<span>%</span></div>
+                            <div class="stat-label">Client Satisfaction</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">3<span>x</span></div>
+                            <div class="stat-label">ROI Average</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="services-hero-visual" data-reveal>
+                    <div class="floating-services">
+                        <div class="service-float-card card-1">
+                            <div class="float-card-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                    <path d="M3 9H21"/>
+                                    <circle cx="7" cy="6" r="1" fill="currentColor"/>
+                                    <circle cx="10" cy="6" r="1" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <div class="float-card-title">Web Design</div>
+                            <div class="float-card-desc">Stunning websites that convert visitors into customers</div>
+                        </div>
+                        <div class="service-float-card card-2">
+                            <div class="float-card-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <rect x="2" y="3" width="20" height="14" rx="2"/>
+                                    <path d="M8 21H16"/>
+                                    <path d="M12 17V21"/>
+                                    <path d="M6 8H8"/>
+                                    <path d="M6 11H10"/>
+                                </svg>
+                            </div>
+                            <div class="float-card-title">UI/UX Design</div>
+                            <div class="float-card-desc">Intuitive interfaces users love</div>
+                        </div>
+                        <div class="service-float-card card-3">
+                            <div class="float-card-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <polygon points="12,2 22,8.5 22,15.5 12,22 2,15.5 2,8.5"/>
+                                    <path d="M12 22V15.5"/>
+                                    <path d="M22 8.5L12 15.5L2 8.5"/>
+                                    <path d="M2 15.5L12 8.5L22 15.5"/>
+                                    <path d="M12 2V8.5"/>
+                                </svg>
+                            </div>
+                            <div class="float-card-title">Branding</div>
+                            <div class="float-card-desc">Visual identities that stand out</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Showcase -->
+    <section class="services-showcase">
+        <div class="container">
+            <div class="showcase-header" data-reveal>
+                <span class="showcase-label">✦ What We Offer</span>
+                <h2 class="showcase-title">Services tailored for your success</h2>
+            </div>
+
+            <!-- Web Design -->
+            <div class="service-mega" data-reveal>
+                <span class="service-mega-number">01</span>
+                <div class="service-mega-inner">
+                    <div class="service-mega-content">
+                        <span class="service-tag">Website Development</span>
+                        <h2 class="service-mega-title">
+                            Web<br><span>Design</span>
+                        </h2>
+                        <p class="service-mega-desc">
+                            We create stunning, high-performance websites that are built to impress. Every design is crafted with precision, focusing on user experience, visual impact, and your business goals.
+                        </p>
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <path d="M5 12L10 17L19 7"/>
+                                    </svg>
+                                </div>
+                                <span class="feature-text">Custom Development</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <path d="M5 12L10 17L19 7"/>
+                                    </svg>
+                                </div>
+                                <span class="feature-text">Mobile-First Design</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <path d="M5 12L10 17L19 7"/>
+                                    </svg>
+                                </div>
+                                <span class="feature-text">SEO Optimization</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <path d="M5 12L10 17L19 7"/>
+                                    </svg>
+                                </div>
+                                <span class="feature-text">Fast Performance</span>
+                            </div>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary btn-magnetic">
+                            <span class="btn-text">Start Web Project</span>
+                            <div class="btn-glow"></div>
+                        </a>
+                    </div>
+                    <div class="service-mega-visual">
+                        <div class="visual-wrapper">
+                            <div class="browser-3d">
+                                <div class="browser-3d-header">
+                                    <div class="browser-3d-dots">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </div>
+                                <div class="browser-3d-content">
+                                    <div class="browser-skeleton">
+                                        <div class="skeleton-header"></div>
+                                        <div class="skeleton-line"></div>
+                                        <div class="skeleton-line"></div>
+                                        <div class="skeleton-line"></div>
+                                        <div class="skeleton-blocks">
+                                            <div class="skeleton-block"></div>
+                                            <div class="skeleton-block"></div>
+                                            <div class="skeleton-block"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UI/UX Design -->
+            <div class="service-mega reverse" data-reveal>
+                <span class="service-mega-number">02</span>
+                <div class="service-mega-inner">
+                    <div class="service-mega-content">
+                        <span class="service-tag">User Experience</span>
+                        <h2 class="service-mega-title">
+                            UI/UX<br><span>Design</span>
+                        </h2>
+                        <p class="service-mega-desc">
+                            User experience is at the heart of everything we design. We create intuitive, beautiful interfaces that users love to interact with, driving engagement and satisfaction.
+                        </p>
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <path d="M5 12L10 17L19 7"/>
+                                    </svg>
+                                </div>
+                                <span class="feature-text">User Research</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <path d="M5 12L10 17L19 7"/>
+                                    </svg>
+                                </div>
+                                <span class="feature-text">Wireframing</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <path d="M5 12L10 17L19 7"/>
+                                    </svg>
+                                </div>
+                                <span class="feature-text">Prototyping</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <path d="M5 12L10 17L19 7"/>
+                                    </svg>
+                                </div>
+                                <span class="feature-text">Design Systems</span>
+                            </div>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary btn-magnetic">
+                            <span class="btn-text">Start UI/UX Project</span>
+                            <div class="btn-glow"></div>
+                        </a>
+                    </div>
+                    <div class="service-mega-visual">
+                        <div class="visual-wrapper">
+                            <div class="mobile-3d">
+                                <div class="mobile-3d-notch"></div>
+                                <div class="mobile-3d-content">
+                                    <div class="mobile-app-header"></div>
+                                    <div class="mobile-app-cards">
+                                        <div class="mobile-app-card"></div>
+                                        <div class="mobile-app-card"></div>
+                                        <div class="mobile-app-card"></div>
+                                    </div>
+                                    <div class="mobile-app-nav">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Branding -->
+            <div class="service-mega" data-reveal>
+                <span class="service-mega-number">03</span>
+                <div class="service-mega-inner">
+                    <div class="service-mega-content">
+                        <span class="service-tag">Brand Identity</span>
+                        <h2 class="service-mega-title">
+                            Brand<br><span>Design</span>
+                        </h2>
+                        <p class="service-mega-desc">
+                            Your brand is your story. We craft comprehensive brand identities that communicate your values, connect with your audience, and stand the test of time.
+                        </p>
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <path d="M5 12L10 17L19 7"/>
+                                    </svg>
+                                </div>
+                                <span class="feature-text">Brand Strategy</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <path d="M5 12L10 17L19 7"/>
+                                    </svg>
+                                </div>
+                                <span class="feature-text">Logo Design</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <path d="M5 12L10 17L19 7"/>
+                                    </svg>
+                                </div>
+                                <span class="feature-text">Visual Identity</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <path d="M5 12L10 17L19 7"/>
+                                    </svg>
+                                </div>
+                                <span class="feature-text">Brand Guidelines</span>
+                            </div>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary btn-magnetic">
+                            <span class="btn-text">Start Branding Project</span>
+                            <div class="btn-glow"></div>
+                        </a>
+                    </div>
+                    <div class="service-mega-visual">
+                        <div class="visual-wrapper">
+                            <div class="brand-3d">
+                                <div class="brand-cube">
+                                    <div class="cube-face front">U</div>
+                                    <div class="cube-face back">X</div>
+                                    <div class="cube-face right">I</div>
+                                    <div class="cube-face left">✦</div>
+                                    <div class="cube-face top">◆</div>
+                                    <div class="cube-face bottom">●</div>
+                                </div>
+                                <div class="brand-colors">
+                                    <div class="color-swatch"></div>
+                                    <div class="color-swatch"></div>
+                                    <div class="color-swatch"></div>
+                                    <div class="color-swatch"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Automation -->
+            <div class="service-mega reverse" data-reveal>
+                <span class="service-mega-number">04</span>
+                <div class="service-mega-inner">
+                    <div class="service-mega-content">
+                        <span class="service-tag">Smart Automation</span>
+                        <h2 class="service-mega-title">
+                            Business<br><span>Automation</span>
+                        </h2>
+                        <p class="service-mega-desc">
+                            Supercharge your business with intelligent automation. From WhatsApp bots to CRM pipelines, we build systems that work 24/7 so you can focus on growth.
+                        </p>
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">WhatsApp Automation</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Chatbots & AI Support</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">CRM Integration</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Lead Management</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Email Automation</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Sales Funnel Automation</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Payment & Order Automation</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">AI Customer Support</span>
+                            </div>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary btn-magnetic">
+                            <span class="btn-text">Automate Your Business</span>
+                            <div class="btn-glow"></div>
+                        </a>
+                    </div>
+                    <div class="service-mega-visual">
+                        <div class="visual-wrapper">
+                            <div class="automation-3d">
+                                <div class="workflow-container">
+                                    <div class="workflow-pulse"></div>
+                                    <div class="workflow-pulse"></div>
+                                    <div class="workflow-node node-1">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                    </div>
+                                    <div class="workflow-node node-2">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                    </div>
+                                    <div class="workflow-node node-3">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                                    </div>
+                                    <div class="workflow-node node-4">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                    </div>
+                                    <div class="workflow-node node-center">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                                    </div>
+                                    <div class="workflow-line h left"></div>
+                                    <div class="workflow-line h right"></div>
+                                    <div class="workflow-line v top"></div>
+                                    <div class="workflow-line v bottom"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marketing & Ads -->
+            <div class="service-mega" data-reveal>
+                <span class="service-mega-number">05</span>
+                <div class="service-mega-inner">
+                    <div class="service-mega-content">
+                        <span class="service-tag">Digital Marketing</span>
+                        <h2 class="service-mega-title">
+                            Marketing<br><span>& Ads</span>
+                        </h2>
+                        <p class="service-mega-desc">
+                            Drive real results with data-driven marketing. We create high-converting ad campaigns across Meta and Google platforms that maximize your ROI and accelerate growth.
+                        </p>
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Meta Ads (FB & IG)</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Google Ads</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Lead Generation</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Growth Strategy</span>
+                            </div>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary btn-magnetic">
+                            <span class="btn-text">Boost Your Marketing</span>
+                            <div class="btn-glow"></div>
+                        </a>
+                    </div>
+                    <div class="service-mega-visual">
+                        <div class="visual-wrapper">
+                            <div class="analytics-3d">
+                                <div class="analytics-header">
+                                    <span>📊 Campaign Dashboard</span>
+                                    <span style="color: #27ca40; font-size: 0.75rem;">● Live</span>
+                                </div>
+                                <div class="analytics-body">
+                                    <div class="analytics-stats">
+                                        <div class="analytics-stat">
+                                            <div class="val">248K</div>
+                                            <div class="lbl">Reach</div>
+                                        </div>
+                                        <div class="analytics-stat">
+                                            <div class="val">4.2K</div>
+                                            <div class="lbl">Leads</div>
+                                        </div>
+                                        <div class="analytics-stat">
+                                            <div class="val">32.6K</div>
+                                            <div class="lbl">Clicks</div>
+                                        </div>
+                                    </div>
+                                    <div class="analytics-chart">
+                                        <div class="chart-bar"></div>
+                                        <div class="chart-bar"></div>
+                                        <div class="chart-bar"></div>
+                                        <div class="chart-bar"></div>
+                                        <div class="chart-bar"></div>
+                                        <div class="chart-bar"></div>
+                                        <div class="chart-bar"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media & Content -->
+            <div class="service-mega reverse" data-reveal>
+                <span class="service-mega-number">06</span>
+                <div class="service-mega-inner">
+                    <div class="service-mega-content">
+                        <span class="service-tag">Social Growth</span>
+                        <h2 class="service-mega-title">
+                            Social Media<br><span>& Content</span>
+                        </h2>
+                        <p class="service-mega-desc">
+                            Build a powerful social presence that attracts and engages your audience. From strategy to execution, we handle your Instagram, create stunning reels, and grow your brand organically.
+                        </p>
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Instagram Handling</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Content Planning & Posting</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Reels Creation & Editing</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Brand Growth Strategy</span>
+                            </div>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary btn-magnetic">
+                            <span class="btn-text">Grow Your Social</span>
+                            <div class="btn-glow"></div>
+                        </a>
+                    </div>
+                    <div class="service-mega-visual">
+                        <div class="visual-wrapper">
+                            <div class="social-3d">
+                                <div class="social-notch"></div>
+                                <div class="social-content">
+                                    <div class="social-profile">
+                                        <div class="social-avatar">U</div>
+                                        <div>
+                                            <div class="social-name">uxi.tech</div>
+                                            <div class="social-handle">@uxitech.in</div>
+                                        </div>
+                                    </div>
+                                    <div class="social-stats-row">
+                                        <div class="social-stat-item">
+                                            <div class="num">1,466</div>
+                                            <div class="txt">Posts</div>
+                                        </div>
+                                        <div class="social-stat-item">
+                                            <div class="num">23.7K</div>
+                                            <div class="txt">Followers</div>
+                                        </div>
+                                        <div class="social-stat-item">
+                                            <div class="num">311</div>
+                                            <div class="txt">Following</div>
+                                        </div>
+                                    </div>
+                                    <div class="social-grid">
+                                        <div class="social-grid-item"></div>
+                                        <div class="social-grid-item"></div>
+                                        <div class="social-grid-item"></div>
+                                        <div class="social-grid-item"></div>
+                                        <div class="social-grid-item"></div>
+                                        <div class="social-grid-item"></div>
+                                        <div class="social-grid-item"></div>
+                                        <div class="social-grid-item"></div>
+                                        <div class="social-grid-item"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Production -->
+            <div class="service-mega" data-reveal>
+                <span class="service-mega-number">07</span>
+                <div class="service-mega-inner">
+                    <div class="service-mega-content">
+                        <span class="service-tag">Creative Studio</span>
+                        <h2 class="service-mega-title">
+                            Video<br><span>Production</span>
+                        </h2>
+                        <p class="service-mega-desc">
+                            Bring your brand to life with stunning video content. From AI-generated videos to cinematic brand films, we create visuals that capture attention and tell your story.
+                        </p>
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">AI Generated Videos</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Business Promo Videos</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Product Ads</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Cinematic Brand Videos</span>
+                            </div>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary btn-magnetic">
+                            <span class="btn-text">Create Your Video</span>
+                            <div class="btn-glow"></div>
+                        </a>
+                    </div>
+                    <div class="service-mega-visual">
+                        <div class="visual-wrapper">
+                            <div class="video-3d">
+                                <div class="video-toolbar">
+                                    <div class="dots"><span></span><span></span><span></span></div>
+                                </div>
+                                <div class="video-preview">
+                                    <div class="play-btn">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+                                    </div>
+                                </div>
+                                <div class="video-timeline">
+                                    <div class="timeline-bar"><div class="timeline-progress"></div></div>
+                                    <div class="timeline-tracks">
+                                        <div class="timeline-track">
+                                            <div class="track-clip"></div>
+                                            <div class="track-clip"></div>
+                                            <div class="track-clip"></div>
+                                        </div>
+                                        <div class="timeline-track">
+                                            <div class="track-clip"></div>
+                                            <div class="track-clip"></div>
+                                            <div class="track-clip"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shoots & Production -->
+            <div class="service-mega reverse" data-reveal>
+                <span class="service-mega-number">08</span>
+                <div class="service-mega-inner">
+                    <div class="service-mega-content">
+                        <span class="service-tag">Photography</span>
+                        <h2 class="service-mega-title">
+                            Shoots &<br><span>Production</span>
+                        </h2>
+                        <p class="service-mega-desc">
+                            Professional photography and production services that elevate your brand visuals. From car deliveries to wedding events, we capture every moment with cinematic precision.
+                        </p>
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Car Delivery Shoots</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Food Promotions</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Clothing Brand Shoots</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Wedding Shoots</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12L10 17L19 7"/></svg>
+                                </div>
+                                <span class="feature-text">Birthday & Event Shoots</span>
+                            </div>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary btn-magnetic">
+                            <span class="btn-text">Book a Shoot</span>
+                            <div class="btn-glow"></div>
+                        </a>
+                    </div>
+                    <div class="service-mega-visual">
+                        <div class="visual-wrapper">
+                            <div class="shoots-3d">
+                                <div class="photo-grid">
+                                    <div class="photo-card">
+                                        <div class="photo-thumb">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                                        </div>
+                                        <div class="photo-label">Car Delivery</div>
+                                    </div>
+                                    <div class="photo-card">
+                                        <div class="photo-thumb">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                                        </div>
+                                        <div class="photo-label">Food Promo</div>
+                                    </div>
+                                    <div class="photo-card">
+                                        <div class="photo-thumb">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                        </div>
+                                        <div class="photo-label">Wedding</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-mega">
+        <div class="container">
+            <div class="process-mega-header" data-reveal>
+                <h2 class="process-mega-title">How we <span>work</span></h2>
+            </div>
+            <div class="process-steps">
+                <div class="process-step-card" data-reveal>
+                    <div class="step-icon-wrap">
+                        <div class="step-icon-bg"></div>
+                        <div class="step-icon-inner">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="11" cy="11" r="8"/>
+                                <path d="M21 21L16.65 16.65"/>
+                            </svg>
+                        </div>
+                        <span class="step-number">01</span>
+                    </div>
+                    <h3 class="step-title">Discovery</h3>
+                    <p class="step-desc">We dive deep into understanding your business, goals, and target audience.</p>
+                </div>
+                <div class="process-step-card" data-reveal>
+                    <div class="step-icon-wrap">
+                        <div class="step-icon-bg"></div>
+                        <div class="step-icon-inner">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 2L2 7L12 12L22 7L12 2Z"/>
+                                <path d="M2 17L12 22L22 17"/>
+                                <path d="M2 12L12 17L22 12"/>
+                            </svg>
+                        </div>
+                        <span class="step-number">02</span>
+                    </div>
+                    <h3 class="step-title">Strategy</h3>
+                    <p class="step-desc">We develop a comprehensive plan that aligns design with your objectives.</p>
+                </div>
+                <div class="process-step-card" data-reveal>
+                    <div class="step-icon-wrap">
+                        <div class="step-icon-bg"></div>
+                        <div class="step-icon-inner">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 19L19 12L22 15L15 22L12 19Z"/>
+                                <path d="M18 13L16.5 5.5L2 2L5.5 16.5L13 18L18 13Z"/>
+                                <path d="M2 2L9.586 9.586"/>
+                                <circle cx="11" cy="11" r="2"/>
+                            </svg>
+                        </div>
+                        <span class="step-number">03</span>
+                    </div>
+                    <h3 class="step-title">Design</h3>
+                    <p class="step-desc">We craft pixel-perfect designs that bring your vision to life beautifully.</p>
+                </div>
+                <div class="process-step-card" data-reveal>
+                    <div class="step-icon-wrap">
+                        <div class="step-icon-bg"></div>
+                        <div class="step-icon-inner">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M22 11.08V12C21.9988 14.1564 21.3005 16.2547 20.0093 17.9818C18.7182 19.709 16.9033 20.9725 14.8354 21.5839C12.7674 22.1953 10.5573 22.1219 8.53447 21.3746C6.51168 20.6273 4.78465 19.2461 3.61096 17.4371C2.43727 15.628 1.87979 13.4881 2.02168 11.3363C2.16356 9.18455 2.99721 7.13631 4.39828 5.49706C5.79935 3.85781 7.69279 2.71537 9.79619 2.24013C11.8996 1.7649 14.1003 1.98232 16.07 2.85999"/>
+                                <path d="M22 4L12 14.01L9 11.01"/>
+                            </svg>
+                        </div>
+                        <span class="step-number">04</span>
+                    </div>
+                    <h3 class="step-title">Delivery</h3>
+                    <p class="step-desc">We launch your project and provide ongoing support for continued success.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="services-cta">
+        <div class="container">
+            <div class="cta-mega-content" data-reveal>
+                <h2 class="cta-mega-title">
+                    Ready to create<br>
+                    <span>something amazing?</span>
+                </h2>
+                <p class="cta-mega-text">
+                    Let's collaborate and build digital experiences that elevate your brand to new heights.
+                </p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-primary btn-large btn-magnetic">
+                        <span class="btn-text">Start a Project</span>
+                        <div class="btn-glow"></div>
+                    </a>
+                    <a href="work.html" class="btn btn-secondary btn-large">
+                        <span>View Our Work</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-glow"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="footer-logo">UXI</span>
+                    <p class="footer-tagline">Unified eXperience Intelligence</p>
+                </div>
+                <div class="footer-nav">
+                    <div class="footer-col">
+                        <h4>Navigation</h4>
+                        <a href="index.html">Home</a>
+                        <a href="services.html">Services</a>
+                        <a href="work.html">Work</a>
+                        <a href="about.html">About</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Services</h4>
+                        <a href="services.html">Web Design</a>
+                        <a href="services.html">UI/UX Design</a>
+                        <a href="services.html">Branding</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Connect</h4>
+                        <a href="https://instagram.com/uxitech.in" target="_blank" rel="noopener">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/>
+                                <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/>
+                                <circle cx="18" cy="6" r="1" fill="currentColor"/>
+                            </svg>
+                            @uxitech.in
+                        </a>
+                        <a href="mailto:uxitech.in@gmail.com">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M2 7L12 13L22 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                            uxitech.in@gmail.com
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 UXI. All rights reserved.</p>
+                <p class="footer-credit">Designed with precision.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="js/3d-effects.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
