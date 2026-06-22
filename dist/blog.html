@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="UXI Blog — Insights on AI transformation, custom web development, local SEO, mobile apps, and digital strategies.">
+    <title>Insights & Blog — UXI</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/3d-effects.css">
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8238210974025135"
+         crossorigin="anonymous"></script>
+    <style>
+        .blog-section {
+            padding: var(--spacing-2xl) 0 var(--spacing-4xl);
+            position: relative;
+            z-index: 1;
+        }
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+        }
+        .blog-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            transition: var(--transition);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .blog-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-border-hover);
+            box-shadow: var(--shadow-xl);
+        }
+        .blog-visual {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+            background: #000000;
+        }
+        .blog-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.15;
+            transition: var(--transition);
+        }
+        .blog-card:hover .blog-gradient {
+            opacity: 0.3;
+        }
+        .blog-card:hover .blog-shape-decor {
+            transform: translate(-50%, -50%) scale(1.1) rotate(15deg);
+        }
+        .blog-shape-decor {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px dashed rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+        .blog-gradient.grad-1 { background: linear-gradient(135deg, #0066ff, #9900ff); }
+        .blog-gradient.grad-2 { background: linear-gradient(135deg, #00ffcc, #0066ff); }
+        .blog-gradient.grad-3 { background: linear-gradient(135deg, #ff007f, #7f00ff); }
+        .blog-gradient.grad-4 { background: linear-gradient(135deg, #ffcc00, #ff3300); }
+        .blog-gradient.grad-5 { background: linear-gradient(135deg, #00ff66, #0099ff); }
+
+        .blog-info {
+            padding: var(--spacing-lg);
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .blog-meta {
+            display: flex;
+            gap: var(--spacing-md);
+            font-size: var(--font-size-xs);
+            color: var(--color-text-tertiary);
+            margin-bottom: var(--spacing-sm);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .blog-category {
+            color: var(--color-accent-light);
+            font-weight: 600;
+        }
+        .blog-card-title {
+            font-size: var(--font-size-xl);
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-text);
+            line-height: 1.4;
+            font-weight: 600;
+        }
+        .blog-card-desc {
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-sm);
+            line-height: 1.6;
+            margin-bottom: var(--spacing-lg);
+            flex-grow: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .blog-read-link {
+            color: var(--color-text);
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            text-decoration: none;
+            transition: var(--transition);
+            margin-top: auto;
+        }
+        .blog-read-link svg {
+            width: 16px;
+            height: 16px;
+            transition: var(--transition);
+        }
+        .blog-card:hover .blog-read-link {
+            color: var(--color-accent-light);
+        }
+        .blog-card:hover .blog-read-link svg {
+            transform: translateX(4px);
+        }
+    </style>
+</head>
+<body data-page="blog">
+    <canvas id="webgl-canvas"></canvas>
+    <div class="cursor-glow" id="cursorGlow"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <div class="page-transition">
+        <div class="transition-logo">UXI</div>
+        <div class="transition-bars">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-text">UXI</span>
+                <span class="logo-dot"></span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="work.html">Work</a>
+                <a href="blog.html" class="active">Blog</a>
+                <a href="about.html">About</a>
+                <a href="contact.html" class="nav-cta">Start a Project</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-bg"></div>
+        <div class="mobile-menu-content">
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="work.html">Work</a>
+            <a href="blog.html" class="active">Blog</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <div class="hero-mesh"></div>
+        </div>
+        <div class="container">
+            <div class="page-hero-content">
+                <span class="page-label" data-reveal>Insights</span>
+                <h1 class="page-title" data-reveal>
+                    <span class="title-word">Our</span>
+                    <span class="title-word highlight">Blog</span>
+                </h1>
+                <p class="page-subtitle" data-reveal>Knowledge, design guidelines, and tech strategies for modern businesses.</p>
+            </div>
+        </div>
+        <div class="hero-gradient-orbs">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+        </div>
+    </section>
+
+    <!-- Blog Grid Section -->
+    <section class="blog-section">
+        <div class="container">
+            <div class="blog-grid">
+                
+                <!-- Article 1 -->
+                <article class="blog-card" data-reveal>
+                    <div class="blog-visual">
+                        <div class="blog-gradient grad-1"></div>
+                        <div class="blog-shape-decor"></div>
+                    </div>
+                    <div class="blog-info">
+                        <div class="blog-meta">
+                            <span class="blog-category">Technology</span>
+                            <span>•</span>
+                            <span>8 Min Read</span>
+                        </div>
+                        <h3 class="blog-card-title">How AI is Transforming Businesses in 2026</h3>
+                        <p class="blog-card-desc">An in-depth look at how artificial intelligence is shifting from simple tools to autonomous agents, transforming business workflows, branding, and core architectures.</p>
+                        <a href="blog-how-ai-is-transforming-businesses-in-2026.html" class="blog-read-link">
+                            Read Article
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="blog-card" data-reveal>
+                    <div class="blog-visual">
+                        <div class="blog-gradient grad-2"></div>
+                        <div class="blog-shape-decor"></div>
+                    </div>
+                    <div class="blog-info">
+                        <div class="blog-meta">
+                            <span class="blog-category">Business</span>
+                            <span>•</span>
+                            <span>6 Min Read</span>
+                        </div>
+                        <h3 class="blog-card-title">Why Every Small Business Needs a Website</h3>
+                        <p class="blog-card-desc">Discover the critical value of owning your digital brand presence, building search engine credibility, and moving away from reliance on third-party social networks.</p>
+                        <a href="blog-why-every-small-business-needs-a-website.html" class="blog-read-link">
+                            Read Article
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article class="blog-card" data-reveal>
+                    <div class="blog-visual">
+                        <div class="blog-gradient grad-3"></div>
+                        <div class="blog-shape-decor"></div>
+                    </div>
+                    <div class="blog-info">
+                        <div class="blog-meta">
+                            <span class="blog-category">Web Dev</span>
+                            <span>•</span>
+                            <span>7 Min Read</span>
+                        </div>
+                        <h3 class="blog-card-title">Benefits of Custom Web Development</h3>
+                        <p class="blog-card-desc">Why custom-coded websites outperform templated builders like WordPress and Squarespace in performance, SEO visibility, security, and unique user experience.</p>
+                        <a href="blog-benefits-of-custom-web-development.html" class="blog-read-link">
+                            Read Article
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 4 -->
+                <article class="blog-card" data-reveal>
+                    <div class="blog-visual">
+                        <div class="blog-gradient grad-4"></div>
+                        <div class="blog-shape-decor"></div>
+                    </div>
+                    <div class="blog-info">
+                        <div class="blog-meta">
+                            <span class="blog-category">Marketing</span>
+                            <span>•</span>
+                            <span>7 Min Read</span>
+                        </div>
+                        <h3 class="blog-card-title">SEO Tips for Local Businesses</h3>
+                        <p class="blog-card-desc">Practical search engine optimization tips to boost your local business rankings, optimize your Google Business profile, and drive regional organic traffic.</p>
+                        <a href="blog-seo-tips-for-local-businesses.html" class="blog-read-link">
+                            Read Article
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 5 -->
+                <article class="blog-card" data-reveal>
+                    <div class="blog-visual">
+                        <div class="blog-gradient grad-5"></div>
+                        <div class="blog-shape-decor"></div>
+                    </div>
+                    <div class="blog-info">
+                        <div class="blog-meta">
+                            <span class="blog-category">Strategy</span>
+                            <span>•</span>
+                            <span>8 Min Read</span>
+                        </div>
+                        <h3 class="blog-card-title">Mobile App vs Website: Which to Choose?</h3>
+                        <p class="blog-card-desc">Should your business build a responsive website, a Progressive Web App (PWA), or a native iOS/Android mobile application? A detailed breakdown.</p>
+                        <a href="blog-mobile-app-vs-website.html" class="blog-read-link">
+                            Read Article
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-glow"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="footer-logo">UXI</span>
+                    <p class="footer-tagline">Unified eXperience Intelligence</p>
+                </div>
+                <div class="footer-nav">
+                    <div class="footer-col">
+                        <h4>Navigation</h4>
+                        <a href="index.html">Home</a>
+                        <a href="services.html">Services</a>
+                        <a href="work.html">Work</a>
+                        <a href="blog.html">Blog</a>
+                        <a href="about.html">About</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Services</h4>
+                        <a href="services.html">Web Design</a>
+                        <a href="services.html">UI/UX Design</a>
+                        <a href="services.html">Branding</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Legal</h4>
+                        <a href="privacy.html">Privacy Policy</a>
+                        <a href="terms.html">Terms & Conditions</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 UXI. All rights reserved.</p>
+                <p class="footer-credit">Designed with precision.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="js/3d-effects.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
