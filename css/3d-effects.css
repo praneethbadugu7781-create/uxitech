@@ -2552,20 +2552,38 @@ body.loaded .transition-logo {
 /* Mobile Services Section */
 @media (max-width: 768px) {
     .services-preview .services-grid-3d {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-lg);
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-sm);
     }
     
-    .service-card-3d {
-        padding: var(--spacing-lg);
+    .service-card-3d .card-front {
+        padding: var(--spacing-md);
+    }
+    
+    .service-icon {
+        width: 40px;
+        height: 40px;
+        margin-bottom: var(--spacing-md);
+    }
+
+    .service-icon .icon-3d {
+        transform: scale(0.5);
+        transform-origin: top left;
+    }
+
+    .service-number {
+        font-size: 10px;
+        margin-bottom: var(--spacing-sm);
     }
     
     .service-title {
-        font-size: 1.1rem;
+        font-size: 0.95rem;
+        margin-bottom: var(--spacing-xs);
     }
     
     .service-desc {
-        font-size: 0.875rem;
+        font-size: 0.75rem;
+        line-height: 1.4;
     }
 }
 
@@ -2764,9 +2782,14 @@ body.loaded .transition-logo {
    ======================================== */
 
 /* Prevent horizontal overflow globally */
-html, body {
+html {
+    max-width: 100%;
+}
+
+body {
     overflow-x: hidden;
-    max-width: 100vw;
+    max-width: 100%;
+    overscroll-behavior-y: none;
 }
 
 /* Fix container padding on all devices */
@@ -2921,11 +2944,11 @@ html, body {
     
     /* Fix hero section on index */
     .hero {
-        padding: 100px 16px 60px;
+        padding: 100px 0 60px;
     }
     
     .hero-content {
-        padding: 0;
+        padding: 0 16px;
         max-width: 100%;
     }
     
@@ -2956,14 +2979,14 @@ html, body {
     }
     
     .shape {
-        max-width: 100vw;
+        max-width: 100%;
     }
     
     /* Fix gradient orbs overflow */
     .hero-gradient-orbs,
     .gradient-orb {
         overflow: hidden;
-        max-width: 100vw;
+        max-width: 100%;
     }
     
     .gradient-orb.orb-1,
@@ -2974,13 +2997,13 @@ html, body {
     
     /* Fix about page sections */
     .about-hero-section {
-        padding: 100px 16px 60px;
+        padding: 100px 0 60px;
     }
     
     .about-hero-content {
         grid-template-columns: 1fr;
         gap: 40px;
-        padding: 0;
+        padding: 0 16px;
     }
     
     .about-hero-text {
@@ -3010,12 +3033,13 @@ html, body {
     
     /* Fix services page */
     .services-hero {
-        padding: 100px 16px 60px;
+        padding: 100px 0 60px;
     }
     
     .services-hero-content {
         grid-template-columns: 1fr;
         gap: 40px;
+        padding: 0 16px;
     }
     
     .services-hero-title {
@@ -3030,7 +3054,7 @@ html, body {
     .cta-3d-bg,
     .cta-particles,
     .hero-orb {
-        max-width: 100vw;
+        max-width: 100%;
         overflow: hidden;
     }
 }
