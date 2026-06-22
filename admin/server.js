@@ -2,6 +2,7 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const { exec } = require('child_process');
+const mongoose = require('mongoose');
 
 const app = express();
 const PORT = 3000;
@@ -14,54 +15,67 @@ const WORK_HTML = path.join(__dirname, '..', 'work.html');
 const DIST_WORK_HTML = path.join(__dirname, '..', 'dist', 'work.html');
 const DIST_DIR = path.join(__dirname, '..', 'dist');
 
-// Read projects
-function readProjects() {
-    try {
-        if (!fs.existsSync(DATA_FILE)) {
-            return [];
-        }
-        const data = fs.readFileSync(DATA_FILE, 'utf8');
-        return JSON.parse(data);
-    } catch (err) {
-        console.error('Error reading projects:', err);
-        return [];
-    }
-}
+// MongoDB Connection
+const MONGO_URI = 'mongodb+srv://praneethbadugu1530_db_user:XR7v7kMqULIjQFOa@cluster0.qzsnr1a.mongodb.net/uxi_portfolio?appName=Cluster0';
 
-// Write projects
-function writeProjects(projects) {
+mongoose.connect(MONGO_URI)
+    .then(() => {
+        console.log('Connected to MongoDB Atlas successfully.');
+        seedProjects();
+    })
+    .catch(err => console.error('MongoDB connection error:', err));
+
+const ProjectSchema = new mongoose.Schema({
+    id: { type: String, unique: true, required: true },
+    title: { type: String, required: true },
+    category: { type: String, required: true },
+    subCategory: { type: String, required: true },
+    desc: { type: String, required: true },
+    year: { type: String, required: true },
+    type: { type: String, required: true },
+    url: { type: String, required: true },
+    gradient: { type: String, required: true },
+    shape: { type: String, required: true }
+});
+
+const Project = mongoose.model('Project', ProjectSchema);
+
+// Seed function to migrate local projects.json data to MongoDB Atlas on startup
+async function seedProjects() {
     try {
-        const dir = path.dirname(DATA_FILE);
-        if (!fs.existsSync(dir)) {
-            fs.mkdirSync(dir, { recursive: true });
+        const count = await Project.countDocuments();
+        if (count === 0 && fs.existsSync(DATA_FILE)) {
+            console.log('MongoDB is empty. Seeding initial projects from projects.json...');
+            const data = fs.readFileSync(DATA_FILE, 'utf8');
+            const projects = JSON.parse(data);
+            await Project.insertMany(projects);
+            console.log('Seeding completed successfully!');
         }
-        fs.writeFileSync(DATA_FILE, JSON.stringify(projects, null, 2), 'utf8');
-        return true;
     } catch (err) {
-        console.error('Error writing projects:', err);
-        return false;
+        console.error('Error seeding database:', err);
     }
 }
 
 // Generate HTML for all projects and update files
-function generateHTML() {
-    const projects = readProjects();
-    
-    let htmlContent = '\n';
-    
-    projects.forEach(project => {
-        let shapeHtml = '';
-        let patternClass = 'pattern-1';
+async function generateHTML() {
+    try {
+        const projects = await Project.find({});
         
-        if (project.shape === 'sphere') {
-            shapeHtml = `
+        let htmlContent = '\n';
+        
+        projects.forEach(project => {
+            let shapeHtml = '';
+            let patternClass = 'pattern-1';
+            
+            if (project.shape === 'sphere') {
+                shapeHtml = `
                                     <div class="floating-sphere-wrap">
                                         <div class="sphere-outer"></div>
                                         <div class="sphere-inner"></div>
                                     </div>`;
-            patternClass = 'pattern-2';
-        } else if (project.shape === 'cube') {
-            shapeHtml = `
+                patternClass = 'pattern-2';
+            } else if (project.shape === 'cube') {
+                shapeHtml = `
                                     <div class="floating-cube">
                                         <div class="cube-face front"></div>
                                         <div class="cube-face back"></div>
@@ -70,18 +84,18 @@ function generateHTML() {
                                         <div class="cube-face left"></div>
                                         <div class="cube-face right"></div>
                                     </div>`;
-            patternClass = 'pattern-1';
-        } else if (project.shape === 'ring') {
-            shapeHtml = `
+                patternClass = 'pattern-1';
+            } else if (project.shape === 'ring') {
+                shapeHtml = `
                                     <div class="floating-ring-wrap">
                                         <div class="ring ring-1"></div>
                                         <div class="ring ring-2"></div>
                                         <div class="ring ring-3"></div>
                                     </div>`;
-            patternClass = 'pattern-3';
-        }
-        
-        htmlContent += `                <!-- Project: ${project.title} -->
+                patternClass = 'pattern-3';
+            }
+            
+            htmlContent += `                <!-- Project: ${project.title} -->
                 <article class="portfolio-item" data-category="${project.category}" data-reveal>
                     <a href="${project.url}" target="_blank" rel="noopener" class="portfolio-card-link">
                         <div class="portfolio-card">
@@ -108,115 +122,111 @@ function generateHTML() {
                         </div>
                     </a>
                 </article>\n\n`;
-    });
-    
-    // Helper to update a target HTML file between markers
-    function updateHTMLFile(filePath) {
-        if (!fs.existsSync(filePath)) {
-            console.error(`File not found: ${filePath}`);
-            return false;
+        });
+        
+        // Helper to update a target HTML file between markers
+        function updateHTMLFile(filePath) {
+            if (!fs.existsSync(filePath)) {
+                console.error(`File not found: ${filePath}`);
+                return false;
+            }
+            
+            let content = fs.readFileSync(filePath, 'utf8');
+            const startMarker = '<!-- PORTFOLIO_ITEMS_START -->';
+            const endMarker = '<!-- PORTFOLIO_ITEMS_END -->';
+            
+            const startIndex = content.indexOf(startMarker);
+            const endIndex = content.indexOf(endMarker);
+            
+            if (startIndex === -1 || endIndex === -1) {
+                console.error(`Markers not found in: ${filePath}`);
+                return false;
+            }
+            
+            const before = content.substring(0, startIndex + startMarker.length);
+            const after = content.substring(endIndex);
+            
+            const newContent = before + htmlContent + '                ' + after;
+            fs.writeFileSync(filePath, newContent, 'utf8');
+            console.log(`Updated: ${filePath}`);
+            return true;
         }
         
-        let content = fs.readFileSync(filePath, 'utf8');
-        const startMarker = '<!-- PORTFOLIO_ITEMS_START -->';
-        const endMarker = '<!-- PORTFOLIO_ITEMS_END -->';
+        const rootUpdated = updateHTMLFile(WORK_HTML);
+        const distUpdated = updateHTMLFile(DIST_WORK_HTML);
         
-        const startIndex = content.indexOf(startMarker);
-        const endIndex = content.indexOf(endMarker);
+        // Write the data to local projects.json file as backup
+        fs.writeFileSync(DATA_FILE, JSON.stringify(projects, null, 2), 'utf8');
         
-        if (startIndex === -1 || endIndex === -1) {
-            console.error(`Markers not found in: ${filePath}`);
-            return false;
+        // Copy to dist folder
+        const distDataDir = path.join(DIST_DIR, 'data');
+        if (!fs.existsSync(distDataDir)) {
+            fs.mkdirSync(distDataDir, { recursive: true });
         }
+        fs.copyFileSync(DATA_FILE, path.join(distDataDir, 'projects.json'));
         
-        const before = content.substring(0, startIndex + startMarker.length);
-        const after = content.substring(endIndex);
-        
-        const newContent = before + htmlContent + '                ' + after;
-        fs.writeFileSync(filePath, newContent, 'utf8');
-        console.log(`Updated: ${filePath}`);
-        return true;
+        return rootUpdated && distUpdated;
+    } catch (err) {
+        console.error('Error generating HTML:', err);
+        return false;
     }
-    
-    const rootUpdated = updateHTMLFile(WORK_HTML);
-    const distUpdated = updateHTMLFile(DIST_WORK_HTML);
-    
-    // Also copy updated projects.json to dist/data/projects.json if dist directory exists
-    const distDataDir = path.join(DIST_DIR, 'data');
-    if (!fs.existsSync(distDataDir)) {
-        fs.mkdirSync(distDataDir, { recursive: true });
-    }
-    fs.copyFileSync(DATA_FILE, path.join(distDataDir, 'projects.json'));
-    
-    return rootUpdated && distUpdated;
 }
 
 // API Routes
-app.get('/api/projects', (req, res) => {
-    res.json(readProjects());
+app.get('/api/projects', async (req, res) => {
+    try {
+        const projects = await Project.find({});
+        res.json(projects);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 });
 
-app.post('/api/projects', (req, res) => {
-    const projects = readProjects();
-    const newProject = {
-        id: req.body.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
-        ...req.body
-    };
-    
-    projects.push(newProject);
-    if (writeProjects(projects)) {
-        generateHTML();
+app.post('/api/projects', async (req, res) => {
+    try {
+        const id = req.body.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+        const newProject = new Project({ id, ...req.body });
+        await newProject.save();
+        await generateHTML();
         res.status(201).json(newProject);
-    } else {
-        res.status(500).json({ error: 'Failed to write projects' });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
     }
 });
 
-app.put('/api/projects/:id', (req, res) => {
-    const projects = readProjects();
-    const index = projects.findIndex(p => p.id === req.params.id);
-    
-    if (index === -1) {
-        return res.status(404).json({ error: 'Project not found' });
-    }
-    
-    projects[index] = { ...projects[index], ...req.body };
-    
-    if (writeProjects(projects)) {
-        generateHTML();
-        res.json(projects[index]);
-    } else {
-        res.status(500).json({ error: 'Failed to update projects' });
+app.put('/api/projects/:id', async (req, res) => {
+    try {
+        const updated = await Project.findOneAndUpdate(
+            { id: req.params.id },
+            req.body,
+            { new: true }
+        );
+        if (!updated) {
+            return res.status(404).json({ error: 'Project not found' });
+        }
+        await generateHTML();
+        res.json(updated);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
     }
 });
 
-app.delete('/api/projects/:id', (req, res) => {
-    let projects = readProjects();
-    const index = projects.findIndex(p => p.id === req.params.id);
-    
-    if (index === -1) {
-        return res.status(404).json({ error: 'Project not found' });
-    }
-    
-    projects = projects.filter(p => p.id !== req.params.id);
-    
-    if (writeProjects(projects)) {
-        generateHTML();
+app.delete('/api/projects/:id', async (req, res) => {
+    try {
+        const deleted = await Project.findOneAndDelete({ id: req.params.id });
+        if (!deleted) {
+            return res.status(404).json({ error: 'Project not found' });
+        }
+        await generateHTML();
         res.json({ message: 'Project deleted successfully' });
-    } else {
-        res.status(500).json({ error: 'Failed to delete project' });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
     }
 });
 
 // Git Publish route
 app.post('/api/git/publish', (req, res) => {
-    // Stage all changes (work.html, dist/work.html, data/projects.json)
-    // We should copy any other file if they edited elsewhere
-    // Then commit and push
-    
     const commitMsg = req.body.message || 'chore: update portfolio works details from admin panel';
-    
-    // Command sequence
     const cmd = `git add -A && git commit -m "${commitMsg.replace(/"/g, '\\"')}" && git push`;
     
     exec(cmd, { cwd: path.join(__dirname, '..') }, (error, stdout, stderr) => {
